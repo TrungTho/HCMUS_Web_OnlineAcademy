@@ -1,0 +1,29 @@
+{
+  "name": "hcmus_web_onlineacademy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "mysql": "^2.18.1",
+    "wysiwyg": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TrungTho/HCMUS_Web_OnlineAcademy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TrungTho/HCMUS_Web_OnlineAcademy/issues"
+  },
+  "homepage": "https://github.com/TrungTho/HCMUS_Web_OnlineAcademy#readme"
+}
