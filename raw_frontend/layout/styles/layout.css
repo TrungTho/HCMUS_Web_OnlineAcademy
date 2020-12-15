@@ -120,7 +120,7 @@ File: Layout CSS
 	text-transform: uppercase;
 }
 
-#header #logo h1 img{
+#header #logo h1 img {
 	width: auto;
 	height: 60px;
 }
@@ -870,7 +870,7 @@ body {
 	background-color: #ffffff;
 }
 a {
-	color: #53d3de;
+	color: #ffffff;
 }
 a:active,
 a:focus {
@@ -932,7 +932,7 @@ textarea:focus,
 /* Rows */
 .row0 {
 	color: #474747;
-	background-color: #f4f4f4;
+	background-color: #53d3de;
 }
 .row1 {
 	color: #ffffff;
