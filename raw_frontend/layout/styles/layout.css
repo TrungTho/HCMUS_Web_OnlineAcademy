@@ -58,6 +58,7 @@ File: Layout CSS
 	position: relative;
 	line-height: 1;
 	z-index: 9999;
+	color: black;
 }
 #topbar #searchform::after {
 	display: block;
@@ -932,11 +933,11 @@ textarea:focus,
 /* Rows */
 .row0 {
 	color: #474747;
-	background-color: #53d3de;
+	background-color: #8ed1dc;
 }
 .row1 {
-	color: #ffffff;
-	background-color: #53d3de;
+	color: #333333;
+	background-color: #F0F0F0;
 	border-color: #1d8b94;
 }
 .row2 {
@@ -964,7 +965,7 @@ textarea:focus,
 
 /* Top Bar */
 #topbar #searchform {
-	color: #53d3de;
+	color: #337ab7;
 }
 #topbar #searchform:hover {
 }
@@ -973,7 +974,7 @@ textarea:focus,
 	background: #1d8b94;
 }
 #topbar #searchform button {
-	color: #ffffff;
+	color: #337ab7;
 	background: transparent;
 }
 
