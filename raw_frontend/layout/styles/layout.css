@@ -11,7 +11,7 @@ File: Layout CSS
 
 @import url('fontawesome-free/css/fontawesome-all.min.css');
 @import url('framework.css');
-
+@import url('homepage.css');
 /* Rows
 --------------------------------------------------------------------------------------------------------------- */
 .row0,

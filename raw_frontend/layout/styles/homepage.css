@@ -9,3 +9,47 @@
 .course img {
 	height: 250px;
 }
+/*Title my course*/
+.row3 .container .welcome{
+    display: flex;
+    align-items: center;
+	justify-content: space-between;
+	
+}
+.row3 .container .welcome a{
+	text-decoration: none;
+	font-size: large;
+	
+}
+
+.row3 .container .welcome a:hover{
+	text-decoration: underline;
+	
+}
+/* Card view */
+.carousel-inner .item .container{
+	display: flex;
+	justify-content:space-around;
+}
+
+a.carousel-control{
+position: flex;
+left: -3%;
+top: 42%;
+color: black;
+border-radius: 50%;
+padding: 30px;
+width: 50px;
+height: 50px;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+}
+a.carousel-control:hover{
+	opacity: 1;
+}
+ a.carousel-control.right {
+    right: -5%;
+    
+}
