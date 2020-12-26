@@ -14,17 +14,17 @@
     display: flex;
     align-items: center;
 	justify-content: space-between;
-	
+
 }
 .row3 .container .welcome a{
 	text-decoration: none;
 	font-size: large;
-	
+
 }
 
 .row3 .container .welcome a:hover{
 	text-decoration: underline;
-	
+
 }
 /* Card view */
 .carousel-inner .item .container{
@@ -51,5 +51,5 @@ a.carousel-control:hover{
 }
  a.carousel-control.right {
     right: -5%;
-    
+
 }
