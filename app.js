@@ -1,7 +1,5 @@
 const express = require("express");
-const exphbs = require("express-handlebars");
 require("express-async-errors");
-
 const app = express();
 
 //parser
@@ -11,20 +9,12 @@ app.use(
   })
 );
 
-app.engine(
-  "hbs",
-  exphbs({
-    extname: "hbs",
-  })
-); //thay doi dinh dang duoi file main layout
-app.set("view engine", "hbs");
-
-app.use("/resources", express.static("public"));
-// require("./middlewares/view.mdw")(app);
-require("./middlewares/session.mdw")(app);
-require("./middlewares/local.mdw")(app);
-require("./middlewares/routes.mdw")(app);
-require("./middlewares/errors.mdw")(app);
+app.use("/resources", express.static("public")); //public resources for storing img, video,...
+require("./middlewares/view.mdw")(app); //define express hbs
+require("./middlewares/session.mdw")(app); //define express session
+require("./middlewares/local.mdw")(app); //define res.locals to store data between reqs
+require("./middlewares/routes.mdw")(app); //define separate route to render
+require("./middlewares/errors.mdw")(app); //define error pages handle
 
 //lang nghe o cong
 const PORT = 3500;
