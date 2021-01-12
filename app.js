@@ -9,7 +9,8 @@ app.use(
   })
 );
 
-app.use("/resources", express.static("public")); //public resources for storing img, video,...
+app.use("/resources", express.static("resources")); //public resources for storing img, video,...
+app.use("/raw_frontend", express.static("raw_frontend")); //public resources for storing img, video,...
 require("./middlewares/view.mdw")(app); //define express hbs
 require("./middlewares/session.mdw")(app); //define express session
 require("./middlewares/local.mdw")(app); //define res.locals to store data between reqs

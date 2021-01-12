@@ -1,57 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyNodeProject</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Youdemu</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
+    <link href="/raw_frontend/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="/raw_frontend/layout/styles/homepage.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    {{{_sections.css}}}
 </head>
 
-<body>
-
-    {{>nav}}
-
-    <div class="container-fluid mt-4">
-        <div class="row">
-            <div class="col-sm-2">
-                <div class="card mb-3">
-                    <h5 class="card-header">Options</h5>
-                    <div class="list-group list-group-flush">
-                        <a href="#" class="list-group-item list-group-item-action active">
-                            Cras justo odio
-                            <span class="badge badge-pill badge-danger float-right mt-1">9</span>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            Dapibus ac facilisis in
-                            <span class="badge badge-pill badge-danger float-right">7</span>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                        <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1"
-                            aria-disabled="true">Vestibulum at
-                            eros</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <h5 class="card-header">Subcriptions</h5>
-                    <div class="card-body">
-                        <h5 class="card-title">Init Online Academy</h5>
-                        <p class="card-text">Web course</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
+<body id="top">
+    <!-- ################################################################################################ -->
+    <!-- ==================================================HEADER======================================== -->
+    <!-- ################################################################################################ -->
+    <div class="wrapper row0">
+        <div id="topbar" class="hoc clear">
+            <div class="fl_left">
+                <!-- ################################################################################################ -->
+                <ul class="nospace">
+                    <li><i class="fas fa-phone rgtspace-5"></i> +84 123 456 7890</li>
+                    <li><i class="far fa-envelope rgtspace-5"></i> hotro@youdemu.vn</li>
+                </ul>
+                <!-- ################################################################################################ -->
             </div>
-            <div class="col-sm-9">
-                {{{body}}}
+            <div class="fl_right">
+                <!-- ################################################################################################ -->
+                <ul class="nospace">
+                    <li>
+                        <a href="index.html"><i class="fas fa-home"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" title="Help Centre"><i class="far fa-life-ring"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" title="Login"><i class="fas fa-sign-in-alt"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" title="Sign Up"><i class="fas fa-edit"></i></a>
+                    </li>
+                    <li id="searchform">
+                        <div>
+                            <form action="#" method="post">
+                                <fieldset>
+                                    <legend>Quick Search:</legend>
+                                    <input type="text" placeholder="Enter search term&hellip;" />
+                                    <button type="submit"><i class="fas fa-search"></i></button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+                <!-- ################################################################################################ -->
             </div>
         </div>
     </div>
+    <!-- ################################################################################################ -->
+    <!-- ==================================================NAVBAR======================================== -->
+    <!-- ################################################################################################ -->
+    {{>nav}}
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
+
+    <!-- ################################################################################################ -->
+    <!--  ==================================================MAIN======================================= -->
+    <!-- ################################################################################################ -->
+    {{{body}}}
+
+
+    <div class="wrapper row4">
+        <footer id="footer" class="hoc clear">
+            <!-- ################################################################################################ -->
+            <div class="one_quarter first">
+                <ul class="nospace linklist">
+                    <li><a href="#">Youdemu cho doanh nghiệp</a></li>
+                    <li><a href="#">Trở thành giảng viên</a></li>
+                    <li><a href="#">Tải về ứng dụng</a></li>
+                    <li><a href="#">Về chúng tôi</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+            </div>
+            <div class="one_quarter">
+                <ul class="nospace linklist">
+                    <li><a href="#">Cơ hội nghề nghiệp</a></li>
+                    <li><a href="#">Hỗ trợ</a></li>
+                    <li><a href="#">Trụ sở</a></li>
+                </ul>
+            </div>
+            <div class="one_quarter">
+                <ul class="nospace linklist">
+                    <li><a href="#">Điều khoản</a></li>
+                    <li><a href="#">Chính sách bảo mật và cookies</a></li>
+                    <li><a href="#">Các khóa học nổi tiếng</a></li>
+                </ul>
+            </div>
+            <div class="one_quarter">
+                <h6 class="heading">Liên hệ</h6>
+                <ul class="faico clear">
+                    <li>
+                        <a class="faicon-facebook" href="#"><i class="fab fa-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a class="faicon-google-plus" href="#"><i class="fab fa-google-plus-g"></i></a>
+                    </li>
+                    <li>
+                        <a class="faicon-linkedin" href="#"><i class="fab fa-linkedin"></i></a>
+                    </li>
+                    <li>
+                        <a class="faicon-twitter" href="#"><i class="fab fa-twitter"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- ################################################################################################ -->
+        </footer>
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="wrapper row5">
+        <div id="copyright" class="hoc clear">
+            <!-- ################################################################################################ -->
+            <p class="fl_left">
+                Copyright &copy; 2018 - All Rights Reserved - <a href="#">Youdemu</a>
+            </p>
+            <p class="fl_right">Phát triển ứng dụng Web - Nhóm 5</p>
+            <!-- ################################################################################################ -->
+        </div>
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+    <!-- JAVASCRIPTS -->
+    <script src="/raw_frontend/layout/scripts/jquery.min.js"></script>
+    <script src="/raw_frontend/layout/scripts/jquery.backtotop.js"></script>
+    <script src="/raw_frontend/layout/scripts/jquery.mobilemenu.js"></script>
+    <script src="/raw_frontend/layout/scripts/slideshow.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    {{{_sections.js}}}
 </body>
 
 </html>
