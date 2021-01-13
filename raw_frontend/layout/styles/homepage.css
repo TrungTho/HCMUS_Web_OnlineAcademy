@@ -132,3 +132,9 @@ a.carousel-control:hover{
 	text-align: center;
 	gap: 25px 25px;
 }
+
+.search-box {
+	background-color: #f4f4f4;
+	padding: 15px;
+	box-shadow: .3px 1px 1px 1px #888888;
+}

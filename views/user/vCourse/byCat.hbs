@@ -10,12 +10,12 @@
 </script>
 {{/section}}
 
-<form action="/cart/add" method="POST" id="formAddToCart">
-  <input type="hidden" name="proid" id="txtProid">
-  <input type="hidden" name="quantity" id="txtQuantity">
-</form>
+<div class="container">
+  <form action="/cart/add" method="POST" id="formAddToCart">
+    <input type="hidden" name="proid" id="txtProid">
+    <input type="hidden" name="quantity" id="txtQuantity">
+  </form>
 
-<div class="card">
   <div class="card-header">{{CatName}}</div>
   <div class="card-body">
     {{#if this.isEmpty}}
@@ -24,7 +24,7 @@
     {{else}}
     <div class="row">
       {{#each this.items}}
-      <div class="col-sm-4 mb-3">
+      <div class="col-sm-4 mb-3" style="margin: 20px 0;">
         <div class="card h-100">
           <img src="/resources/images/courses/{{course.ID_COURSE}}/{{course.ID_COURSE}}_thumbnail.png" width="200"
             height="150" class="card-img-top" alt="{{course.COURSENAME}}" title="{{course.COURSENAME}}">
@@ -53,6 +53,6 @@
       {{/each}}
     </div>
     {{/if}}
-  </div>
-  <div class="card-footer text-muted">Footer</div>
-</div>;
+    <div class="card-footer text-muted">Footer</div>
+  </div>;
+</div>
