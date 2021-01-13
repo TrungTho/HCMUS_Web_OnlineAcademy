@@ -16,7 +16,7 @@
 </form>
 
 <div class="card">
-  <div class="card-header">Category</div>
+  <div class="card-header">{{CatName}}</div>
   <div class="card-body">
     {{#if this.isEmpty}}
     <h4 class="card-title">No data</h4>
@@ -27,17 +27,23 @@
       <div class="col-sm-4 mb-3">
         <div class="card h-100">
           <img src="/resources/images/courses/{{course.ID_COURSE}}/{{course.ID_COURSE}}_thumbnail.png" width="200"
-            height="150" class="card-img-top" alt="{{course.COURSENAME}}" title="{course.{COURSENAME}}">
+            height="150" class="card-img-top" alt="{{course.COURSENAME}}" title="{{course.COURSENAME}}">
           <div class="card-body">
             <h5 class="card-title">{{course.COURSENAME}}</h5>
             <h6 class="card-title">Instructor: {{instructor.FULLNAME}}</h6>
-            <h5 class="card-title text-danger">{{format course.PRICE}}</h5>
+            {{#if isDiscount}}
+            <h6 class="card-title"><del>{{format course.PRICE}} VND</del></h6>
+            <h5 class="card-title text-danger">{{format realPrice}} VND</h5>
+            {{else}}
+            <h5 class="card-title text-danger">{{format realPrice}}</h5>
+            {{/if}}
             <p class="card-text">{{course.SHORTDES}}</p>
           </div>
           <div class="card-footer text-muted">
-            <a href="/products/detail/{{ProID}}" class="btn btn-outline-primary">Detail</a>
+            <a href="/course/detail/{{course.ID_COURSE}}" class="btn btn-outline-primary">Detail</a>
+
             {{#if ../isLogin}}
-            <a data-productid="{{ProID}}" href="#" class="btn btn-outline-success addToCartButton">
+            <a data-productid="{{course.ID_COURSE}}" href="#" class="btn btn-outline-success addToCartButton">
               Add to cart
             </a>
             {{/if}}

@@ -1,6 +1,8 @@
 const express = require("express");
+const categoryModel = require("../../models/category.model");
 const router = express.Router();
-const productModel = require("../../models/course.model");
+const courseModel = require("../../models/course.model");
+const userCourseModel = require("../../models/user-course.model");
 const userModel = require("../../models/user.model");
 
 router.get("/byCat/:id", async function (req, res) {
@@ -13,31 +15,79 @@ router.get("/byCat/:id", async function (req, res) {
     }
   }
 
-  const rows = await productModel.byCat(catID);
+  const rows = await courseModel.byCat(catID);
+  const CatName = await categoryModel.getSingle(rows[0].ID_CATE).CATENAME;
   const items = [];
-
   for (let course of rows) {
     let instructor = await userModel.getSingle(course.ID_USER);
+
+    let realPrice = 0;
+    let isDiscount = true;
+    if (course.DISCOUNT === 0) {
+      realPrice = course.PRICE;
+      isDiscount = false;
+    } else {
+      let price = +course.PRICE,
+        sale = +course.DISCOUNT;
+      realPrice = price - (price * sale) / 100;
+    }
+
     items.push({
       course,
       instructor,
+      realPrice,
+      isDiscount,
     });
   }
 
-  res.render("user/vProduct/byCat", {
+  res.render("user/vCourse/byCat", {
+    CatName,
     items,
     isEmpty: items.length === 0,
   });
 });
 
 router.get("/detail/:id", async function (req, res) {
-  const datum = await productModel.getSingle(req.params.id);
-  if (datum === null) {
+  const course = await courseModel.getSingle(req.params.id);
+  if (course === null) {
     return res.redirect("/");
   }
 
-  res.render("vProduct/detail", {
-    product: datum,
+  //calculate discount price
+  let realPrice = 0;
+  let isDiscount = true;
+  if (course.DISCOUNT === 0) {
+    realPrice = course.PRICE;
+    isDiscount = false;
+  } else {
+    let price = +course.PRICE,
+      sale = +course.DISCOUNT;
+    realPrice = price - (price * sale) / 100;
+  }
+
+  //find instructor
+  let instructor = await userModel.getSingle(course.ID_USER);
+
+  //collect feedback
+  const usercourse = await userCourseModel.getFeedbackWithCourseID(
+    course.ID_COURSE
+  );
+  let feedbackdata = [];
+  for (let feedback of usercourse) {
+    let user = await userModel.getSingle(feedback.ID_USER);
+    console.log(user);
+    feedbackdata.push({
+      feedback,
+      user,
+    });
+  }
+
+  res.render("user/vCourse/detail", {
+    product: course,
+    realPrice,
+    isDiscount,
+    instructor,
+    feedbackdata,
   });
 });
 

@@ -1,9 +1,13 @@
 const db = require("../utils/database");
-const TABLE_NAME = "category";
+const TABLE_NAME = "user_course";
 
 module.exports = {
   all() {
     return db.load(`select * from ${TABLE_NAME}`);
+  },
+
+  getFeedbackWithCourseID(id) {
+    return db.load(`select * from ${TABLE_NAME} where ID_COURSE = ${id}`);
   },
 
   add(newObj) {
@@ -22,7 +26,7 @@ module.exports = {
 
   async getSingle(id) {
     const rows = await db.load(
-      `select * from ${TABLE_NAME} where CatID = ${id} `
+      `select * from ${TABLE_NAME} where ID_USER_COURSE = ${id} `
     );
     if (rows.length === 0) return null;
     return rows[0];

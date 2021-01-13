@@ -1,0 +1,75 @@
+{{#section 'js'}}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="jquery.star-rating-svg.js"></script>
+
+{{/section}}
+
+{{#section 'css'}}
+<link rel="stylesheet" type="text/css" href="star-rating-svg.css">
+{{/section}}
+
+
+{{#with product}}
+<div class="card">
+    <div class="card-header">
+        {{ProName}}
+    </div>
+    <div class="card-body">
+        <img src="/resources/images/courses/{{ID_COURSE}}/{{ID_COURSE}}_main.png" alt="{{COURSENAME}}"
+            title="{{COURSENAME}}">
+        <p class="card-text">Lastest update: {{LASTUPDATE}}</p>
+        <p class="card-text">Instructor: {{../instructor.FULLNAME}}</p>
+        {{#if ../isLogin}}
+        <form action="/cart/add" method="POST">
+            <div class="input-group mb-3">
+                <input type="hidden" value="{{ProID}}" name="proid">
+                <input type="text" class="form-control" placeholder="0" value="1" name="quantity">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="submit" id="button-addon2">
+                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                        Add to cart
+                    </button>
+                </div>
+            </div>
+        </form>
+        {{/if}}
+        {{#if ../isDiscount}}
+        <p class="card-text"><span class="text"><del>{{format PRICE}} VND</del></span></p>
+        <p class="card-text">Price: <span class="text-danger">{{format ../realPrice}} VND</span></p>
+        {{else}}
+        <p class="card-text">Price: <span class="text-danger">{{format PRICE VND}}</span></p>
+        {{/if}}
+        <div class="my-rating"></div>
+        <p class="card-text">{{SHORTDES}}</p>
+        <p class="card-text">
+            {{{DESCRIPTION}}}
+        </p>
+
+    </div>
+    <div class="card-footer text-muted">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">UserName</th>
+                    <th scope="col">Rate</th>
+                    <th scope="col">Feedback</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each ../feedbackdata}}
+                <tr>
+
+                    <td>{{user.FULLNAME}}</td>
+                    <td>{{feedback.RATE}}</td>
+                    <td>{{feedback.FEEDBACK}}</td>
+
+                </tr>
+                {{/each}}
+            </tbody>
+            <tfoot>
+
+            </tfoot>
+        </table>
+    </div>
+</div>
+{{/with}}
