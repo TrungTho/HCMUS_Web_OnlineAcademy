@@ -1,0 +1,52 @@
+{{#section 'js'}}
+<script>
+  $('.addToCartButton').on('click', function () {
+    const id = $(this).data('productid');
+    //console.log(id);
+    $('#txtProid').val(id);
+    $('#txtQuantity').val("1");
+    $('#formAddToCart').submit();
+  })
+</script>
+{{/section}}
+
+<form action="/cart/add" method="POST" id="formAddToCart">
+  <input type="hidden" name="proid" id="txtProid">
+  <input type="hidden" name="quantity" id="txtQuantity">
+</form>
+
+<div class="card">
+  <div class="card-header">Category</div>
+  <div class="card-body">
+    {{#if this.isEmpty}}
+    <h4 class="card-title">No data</h4>
+    <p class="card-text">Text</p>
+    {{else}}
+    <div class="row">
+      {{#each this.items}}
+      <div class="col-sm-4 mb-3">
+        <div class="card h-100">
+          <img src="/resources/images/courses/{{course.ID_COURSE}}/{{course.ID_COURSE}}_thumbnail.png" width="200"
+            height="150" class="card-img-top" alt="{{course.COURSENAME}}" title="{course.{COURSENAME}}">
+          <div class="card-body">
+            <h5 class="card-title">{{course.COURSENAME}}</h5>
+            <h6 class="card-title">Instructor: {{instructor.FULLNAME}}</h6>
+            <h5 class="card-title text-danger">{{format course.PRICE}}</h5>
+            <p class="card-text">{{course.SHORTDES}}</p>
+          </div>
+          <div class="card-footer text-muted">
+            <a href="/products/detail/{{ProID}}" class="btn btn-outline-primary">Detail</a>
+            {{#if ../isLogin}}
+            <a data-productid="{{ProID}}" href="#" class="btn btn-outline-success addToCartButton">
+              Add to cart
+            </a>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    {{/if}}
+  </div>
+  <div class="card-footer text-muted">Footer</div>
+</div>;

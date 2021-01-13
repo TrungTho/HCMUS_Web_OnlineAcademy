@@ -1,5 +1,5 @@
 const db = require("../utils/database");
-const TABLE_NAME = "users";
+const TABLE_NAME = "user";
 
 module.exports = {
   all() {
@@ -26,7 +26,9 @@ module.exports = {
   },
 
   async getSingle(id) {
-    const rows = await db.load(`select * from ${TABLE_NAME} where ID = ${id} `);
+    const rows = await db.load(
+      `select * from ${TABLE_NAME} where ID_USER = ${id} `
+    );
     if (rows.length === 0) return null;
     return rows[0];
   },

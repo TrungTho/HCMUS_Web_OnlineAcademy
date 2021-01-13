@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-header">Category</div>
+  <div class="card-body">
+    {{#if this.isEmpty}}
+    <h4 class="card-title">No data</h4>
+    <p class="card-text">Text</p>
+    {{else}}
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each this.products}}
+        <tr>
+          <th scope="row">{{this.ProID}}</th>
+          <td>{{this.ProName}}</td>
+          <td>{{this.Price}}</td>
+          <td>{{this.Quantity}}</td>
+          <td class="text-left">
+            <a name="" id="" class="btn-sm btn-success" href="javascript:;" title="Edit" role="button">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </a>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{/if}}
+  </div>
+  <div class="card-footer text-muted">Footer</div>
+</div>;

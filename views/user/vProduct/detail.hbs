@@ -1,0 +1,34 @@
+{{#with product}}
+<div class="card">
+    <div class="card-header">
+        {{ProName}}
+    </div>
+    <div class="card-body">
+        <img src="/public/imgs/sp/{{ProID}}/main.jpg" alt="{{ProName}}" title="{{ProName}}">
+        <p class="card-text">Giá: <span class="text-danger">{{format Price}}</span></p>
+        <p class="card-text">Tồn kho: {{Quantity}}</p>
+        <p class="card-text"></p>
+        <p class="card-text">
+            {{{FullDes}}}
+        </p>
+
+        {{#if ../isLogin}}
+        <form action="/cart/add" method="POST">
+            <div class="input-group mb-3">
+                <input type="hidden" value="{{ProID}}" name="proid">
+                <input type="text" class="form-control" placeholder="0" value="1" name="quantity">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="submit" id="button-addon2">
+                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                        Add to cart
+                    </button>
+                </div>
+            </div>
+            {{/if}}
+        </form>
+    </div>
+    <div class="card-footer text-muted">
+        Footer
+    </div>
+</div>
+{{/with}}

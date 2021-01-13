@@ -1,5 +1,5 @@
 const db = require("../utils/database");
-const TABLE_NAME = "courses";
+const TABLE_NAME = "course";
 
 module.exports = {
   all() {
@@ -16,11 +16,13 @@ module.exports = {
 
   //get all products by them category
   byCat(id) {
-    return db.load(`select * from ${TABLE_NAME} where ID = ${id}`);
+    return db.load(`select * from ${TABLE_NAME} where ID_CATE = ${id}`);
   },
 
   async getSingle(id) {
-    const rows = await db.load(`select * from ${TABLE_NAME} where ID = ${id} `);
+    const rows = await db.load(
+      `select * from ${TABLE_NAME} where ID_Course = ${id} `
+    );
     if (rows.length === 0) return null;
     return rows[0];
   },
