@@ -113,7 +113,14 @@
                         </button>
                     </div>
                 </div>
-
+                {{#if err_message}}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{err_message}}
+                </div>
+                {{/if}}
                 <a class="btn btn-primary" href="/admin/categories" role="button">
                     <i class="fa fa-backward" aria-hidden="true"></i>
                     Back to Category</a>

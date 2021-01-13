@@ -22,12 +22,18 @@ router.post("/add", async function (req, res) {
 });
 
 router.post("/del", async function (req, res) {
+  //check if del cat has had courses=> prevent del
   const courses = await courseModel.byCat(req.body.ID_CATE);
-  if (courses === null) {
+  console.log(courses);
+  if (courses.length === 0) {
     const ret = await categoryModel.del(req.body);
     res.redirect("/admin/categories");
   }
-  alert("This Category has existing Courses!!! Can not delete");
+  const datum = req.body;
+  res.render("admin/category/edit", {
+    datum,
+    err_message: "Can not delete category that already has course!!!",
+  });
 });
 
 router.post("/update", async function (req, res) {
