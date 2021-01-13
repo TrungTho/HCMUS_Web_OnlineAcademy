@@ -91,4 +91,8 @@ router.get("/detail/:id", async function (req, res) {
   });
 });
 
+router.get("/lesson/:id", async function (req, res) {
+  res.render("user/vCourse/lesson", {});
+});
+
 module.exports = router;
