@@ -40,12 +40,17 @@
                     <li>
                         <a href="#" title="Help Centre"><i class="far fa-life-ring"></i></a>
                     </li> --}}
+                    {{#if isLogin}}
+
+                    {{else}}
                     <li>
-                        <a href="#" title="Login"><i class="fas fa-sign-in-alt"></i></a>
+                        <a href="/account/login" title="Login"><i class="fas fa-sign-in-alt"></i></a>
                     </li>
                     <li>
-                        <a href="#" title="Sign Up"><i class="fas fa-edit"></i></a>
+                        <a href="/account/register" title="Sign Up"><i class="fas fa-edit"></i></a>
                     </li>
+
+                    {{/if}}
                     <li id="searchform">
                         <div class="search-box">
                             <form action="#" method="post">

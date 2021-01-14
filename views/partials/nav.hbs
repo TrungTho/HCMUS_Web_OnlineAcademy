@@ -11,17 +11,7 @@
             <!-- ################################################################################################ -->
             <ul class="clear">
                 <li class="active"><a href="/">Home</a></li>
-                <li>
-                    <a class="drop" href="#">My courses</a>
-                    <ul>
-                        <li><a href="/raw_frontend/pages/gallery.html">Gallery</a></li>
-                        <li><a href="/raw_frontend/pages/full-width.html">Full Width</a></li>
-                        <li><a href="/raw_frontend/pages/sidebar-left.html">Sidebar Left</a></li>
-                        <li><a href="/raw_frontend/pages/sidebar-right.html">Sidebar Right</a></li>
-                        <li><a href="/raw_frontend/pages/basic-grid.html">Basic Grid</a></li>
-                        <li><a href="/raw_frontend/pages/font-icons.html">Font Icons</a></li>
-                    </ul>
-                </li>
+                <li><a href="#">Cart</a></li>
                 <li>
                     <a class="drop" href="#">Categories</a>
                     <ul>
@@ -36,7 +26,38 @@
                     </ul>
                 </li>
                 <li><a href="#">Teach on Youdemu</a></li>
-                <li><a href="#">Cart</a></li>
+                {{#if isLogin}}
+                <li>
+                    <a class="drop" href="#">Account</a>
+                    <ul>
+                        <li>
+                            <a href="/account/profile">
+                                <i class="fa fa-user-secret" aria-hidden="true"></i>
+                                {{loggedinUser.FULLNAME}}
+                            </a>
+                        </li>
+
+                        <li><a href="#">
+                                <i class="fa fa-commenting" aria-hidden="true"></i>
+                                Notifications</a></li>
+
+                        <form id="formLogout" action="/account/logout" method="POST"></form>
+                        <li>
+                            <a href="javascript: $('#formLogout').submit();">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                Log out
+                            </a>
+                        </li>
+                        {{!-- <li><a href="/raw_frontend/pages/gallery.html">Gallery</a></li>
+                        <li><a href="/raw_frontend/pages/full-width.html">Full Width</a></li>
+                        <li><a href="/raw_frontend/pages/sidebar-left.html">Sidebar Left</a></li>
+                        <li><a href="/raw_frontend/pages/sidebar-right.html">Sidebar Right</a></li> --}}
+                    </ul>
+                </li>
+
+                {{else}}
+
+                {{/if}}
             </ul>
             <!-- ################################################################################################ -->
         </nav>

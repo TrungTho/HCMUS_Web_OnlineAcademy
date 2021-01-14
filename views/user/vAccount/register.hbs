@@ -1,0 +1,142 @@
+{{#section 'css'}}
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+{{/section}}
+
+{{#section 'js'}}
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script>
+
+    $('#formRegister').on('submit', function (e) {
+        e.preventDefault();
+
+        if ($('#txtUsername').val().length === 0) {
+            alert("invalid username");
+            return;
+        }
+
+        const username = $('#txtUsername').val();
+
+        $.getJSON(`/account/is-available?user=${username}`, function (data) {
+            if (data === true) {
+                //off event on in first line
+                //alert("real submit");
+                $('#formRegister').off('submit').submit();
+            }
+            else {
+                alert("existed username");
+            }
+        })
+    });
+
+    $('#txtDOB').datetimepicker({
+        format: 'd/m/Y',
+        timepicker: false,
+        mask: true,
+    });
+
+</script>
+{{/section}}
+
+<main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="sidebar one_quarter first">
+        <!-- ################################################################################################ -->
+        <h6>ghi chu cho nguoi dung</h6>
+
+        <div class="sdb_holder">
+            <h6>ghi lam nham gi do</h6>
+            <address>
+                Full Name<br>
+                Address Line 1<br>
+                Address Line 2<br>
+                Town/City<br>
+                Postcode/Zip<br>
+                <br>
+                Tel: xxxx xxxx xxxxxx<br>
+                Email: <a href="#">contact@domain.com</a>
+            </address>
+        </div>
+        <div class="sdb_holder">
+            <article>
+                <h6>Lorem ipsum dolor</h6>
+                <p>Nuncsed sed conseque a at quismodo tris mauristibus sed habiturpiscinia sed.</p>
+                <ul>
+                    <li><a href="#">Lorem ipsum dolor sit</a></li>
+                    <li>Etiam vel sapien et</li>
+                    <li><a href="#">Etiam vel sapien et</a></li>
+                </ul>
+                <p>Nuncsed sed conseque a at quismodo tris mauristibus sed habiturpiscinia sed.
+                    Condimentumsantincidunt dui mattis magna intesque purus orci augue lor nibh.</p>
+                <p class="more"><a href="#">Continue Reading &raquo;</a></p>
+            </article>
+        </div>
+        <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="content three_quarter">
+        <!-- ################################################################################################ -->
+        <form action="" method="POST" id="formRegister">
+            <div class="card">
+                <div class="card-header">
+                    Register
+                </div>
+                <div class="card-body">
+                    {{#if err_message}}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{err_message}}
+                    </div>
+                    {{/if}}
+
+                    <div class="form-group">
+                        <label for="txtUsername">Username</label>
+                        <input type="text" class="form-control" id="txtUsername" name="USERNAME" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtPassword">Password</label>
+                        <input type="password" class="form-control" id="txtPassword" name="PASSWORD">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtConfirm">Confirm</label>
+                        <input type="password" class="form-control" id="txtConfirm">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtName">Name</label>
+                        <input type="text" class="form-control" id="txtName" name="FULLNAME">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtEmail">Email</label>
+                        <input type="text" class="form-control" id="txtEmail" name="EMAIL">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtDOB">DOB</label>
+                        <input type="text" class="form-control" id="txtDOB" name="DOB">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtBio">Bio</label>
+                        <input type="text" class="form-control" id="txtBio" name="PROFILE">
+                    </div>
+
+                </div>
+                <div class="card-footer text-muted">
+                    <button type="submit" class="btn btn-outline-success">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        Register
+                    </button>
+                </div>
+            </div>
+
+
+        </form>
+        <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+</main>
