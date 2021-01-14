@@ -6,6 +6,10 @@ const userModel = require("../../models/user.model");
 const Auth = require("../../middlewares/auth.mdw");
 
 router.get("/login", async function (req, res) {
+  if (req.headers.referer) {
+    req.session.retUrl = req.headers.referer;
+  }
+
   res.render("user/vAccount/login", {});
 });
 
@@ -28,12 +32,8 @@ router.post("/login", async function (req, res) {
         req.session.isStudent = true;
       }
 
-      console.log("role:");
-      console.log(req.session.isAdmin);
-      console.log(req.session.isInstructor);
-      console.log(req.session.isStudent);
-
-      res.redirect(req.originalUrl);
+      let url = req.session.retUrl || "/";
+      res.redirect(url);
     }
   }
 
@@ -90,12 +90,32 @@ router.post("/register", async function (req, res) {
 });
 
 router.get("/profile", Auth, async function (req, res) {
-  res.render("user/vAccount/profile");
+  const userdata = req.session.loggedinUser;
+  userdata.DOB = moment(userdata.DOB, "YYYY/MM/DD").format("DD/MM/YYY");
+
+  //console.log(userdata);
+  res.render("user/vAccount/profile", {
+    userdata,
+  });
 });
 
 router.post("/profile", async function (req, res) {
   try {
-    res.render("user/vAccount/profile");
+    const hashedPass = bcrypt.hashSync(req.body.PASSWORD, 10);
+    const convertedDOB = moment(req.body.DOB, "DD/MM/YYY").format("YYYY/MM/DD");
+    // console.log(hashedPass + convertedDOB);
+    const newUser = {
+      USERNAME: req.body.USERNAME,
+      PASSWORD: hashedPass,
+      DOB: convertedDOB,
+      FULLNAME: req.body.FULLNAME,
+      EMAIL: req.body.EMAIL,
+      TYPE: 1,
+      PROFILE: req.body.PROFILE,
+    };
+    console.log(newUser);
+    await userModel.update(newUser);
+    res.render("user/vAccount/profile", { userdata: newUser });
   } catch (error) {
     res.render("user/vAccount/profile", {
       err_message: "Somethings wrong, please check again!!!",

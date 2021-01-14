@@ -18,7 +18,7 @@
         const username = $('#txtUsername').val();
 
         $.getJSON(`/account/is-available?user=${username}`, function (data) {
-            if (data === true) {
+            if (data === false) {
                 //off event on in first line
                 //alert("real submit");
                 $('#formRegister').off('submit').submit();
@@ -38,51 +38,96 @@
 </script>
 {{/section}}
 
-<form action="" method="post" id="formRegister">
-    <div class="card">
-        <div class="card-header">
-            Register
-        </div>
-        <div class="card-body">
-            {{#if err_message}}
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                {{err_message}}
-            </div>
-            {{/if}}
-            <div class="form-group">
-                <label for="txtUsername">Username</label>
-                <input type="text" class="form-control" id="txtUsername" name="f_Username" autofocus>
-            </div>
-            <div class="form-group">
-                <label for="txtPassword">Password</label>
-                <input type="password" class="form-control" id="txtPassword" name="f_Password">
-            </div>
-            <div class="form-group">
-                <label for="txtConfirm">Confirm</label>
-                <input type="password" class="form-control" id="txtConfirm">
-            </div>
-            <div class="form-group">
-                <label for="txtName">Name</label>
-                <input type="text" class="form-control" id="txtName" name="f_Name">
-            </div>
-            <div class="form-group">
-                <label for="txtEmail">Email</label>
-                <input type="text" class="form-control" id="txtEmail" name="f_Email">
-            </div>
-            <div class="form-group">
-                <label for="txtDOB">DOB</label>
-                <input type="text" class="form-control" id="txtDOB" name="f_DOB">
-            </div>
+<main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="sidebar one_quarter first">
+        <!-- ################################################################################################ -->
+        <h2>{{#if isStudent}}
+            Student
+            {{/if}} {{#if isInstructor}}
+            Instructor
+            {{/if}} Profile</h2>
 
+        <div class="sdb_holder">
+            <img src="/resources/images/accounts/{{userdata.ID_USER}}.png" alt="">
         </div>
-        <div class="card-footer text-muted">
-            <button type="submit" class="btn btn-outline-success">
-                <i class="fa fa-check" aria-hidden="true"></i>
-                Register
-            </button>
+        <div class="sdb_holder">
+            <a name="" id="" class="btn btn-outline-primary" href="#" role="button">Change
+                Avatar</a>
         </div>
+        <!-- ################################################################################################ -->
     </div>
-</form>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="content three_quarter">
+        <!-- ################################################################################################ -->
+        <form action="" method="post" id="formRegister">
+            <div class="card">
+                <div class="card-header">
+                    Account
+                </div>
+                <div class="card-body">
+                    {{#if err_message}}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{err_message}}
+                    </div>
+                    {{/if}}
+                    <div class="form-group">
+                        <label for="txtIDUSER">Username</label>
+                        <input type="text" class="form-control" value="{{userdata.ID_USER}}" id="txtIDUSER"
+                            name="ID_USER" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtUsername">Username</label>
+                        <input type="text" class="form-control" value="{{userdata.USERNAME}}" id="txtUsername"
+                            name="USERNAME" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtOldPassword">Password</label>
+                        <input type="password" class="form-control" id="txtOldPassword" autofocus name="OldPassword">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtPassword">Password</label>
+                        <input type="password" class="form-control" id="txtPassword" name="PASSWORD">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtConfirm">Confirm</label>
+                        <input type="password" class="form-control" id="txtConfirm">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtName">Name</label>
+                        <input type="text" class="form-control" value="{{userdata.FULLNAME}}" id="txtName"
+                            name="FULLNAME">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtEmail">Email</label>
+                        <input type="text" class="form-control" value="{{userdata.EMAIL}}" id="txtEmail" name="EMAIL">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtDOB">DOB</label>
+                        <input type="text" class="form-control" value="{{userdata.DOB}}" id="txtDOB" name="DOB">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtBio">Bio</label>
+                        <input type="text" class="form-control" id="txtBio" value="{{userdata.PROFILE}}" name="PROFILE">
+                    </div>
+
+                </div>
+                <div class="card-footer text-muted">
+                    <button type="submit" class="btn btn-outline-success">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        Update Profile
+                    </button>
+                </div>
+            </div>
+        </form>
+        <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+</main>
