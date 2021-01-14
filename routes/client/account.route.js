@@ -108,11 +108,11 @@ router.post("/changeavatar", async function (req, res) {
   //create path to store avatar image file
   const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, "/resources/images/accounts/");
+      cb(null, "./resources/images/accounts/");
     },
     filename: function (req, file, cb) {
-      let filename = "111.png";
-      // let filename = req.session.loggedinUser.ID_USER + "111.png";
+      // let filename = "111.png";
+      let filename = req.session.loggedinUser.ID_USER + ".png";
       console.log(filename);
       cb(null, filename);
     },
@@ -122,10 +122,11 @@ router.post("/changeavatar", async function (req, res) {
   upload.single("avatar")(req, res, function (err) {
     if (err) {
     } else {
-      res.render("user/vAccount/profile", {
-        userdata: req.session.loggedinUser,
-        err_message: "Avatar changed",
-      });
+      // res.render("user/vAccount/profile", {
+      //   userdata: req.session.loggedinUser,
+      //   err_message: "Avatar changed",
+      // });
+      res.redirect("/account/profile");
     }
   });
 });
