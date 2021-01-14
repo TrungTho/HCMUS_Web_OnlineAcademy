@@ -26,8 +26,9 @@
       {{#each this.items}}
       <div class="col-sm-4 mb-3" style="margin: 20px 0;">
         <div class="card h-100">
-          <img src="/resources/images/courses/{{course.ID_COURSE}}/{{course.ID_COURSE}}_thumbnail.png" width="200"
-            height="150" class="card-img-top" alt="{{course.COURSENAME}}" title="{{course.COURSENAME}}">
+          <img src="/resources/images/courses/{{course.ID_COURSE}}/{{course.ID_COURSE}}_thumbnail.png"
+            class="card-img-top" alt="{{course.COURSENAME}}" title="{{course.COURSENAME}}"
+            style="width: 100%; height: 40%">
           <div class="card-body">
             <h5 class="card-title">{{course.COURSENAME}}</h5>
             <h6 class="card-title">Instructor: {{instructor.FULLNAME}}</h6>
