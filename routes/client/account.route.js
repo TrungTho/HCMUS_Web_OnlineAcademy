@@ -66,7 +66,9 @@ router.get("/register", async function (req, res) {
 router.post("/register", async function (req, res) {
   try {
     const hashedPass = bcrypt.hashSync(req.body.PASSWORD, 10);
-    const convertedDOB = moment(req.body.DOB, "DD/MM/YYY").format("YYYY/MM/DD");
+    const convertedDOB = moment(req.body.DOB, "DD/MM/YYYY").format(
+      "YYYY/MM/DD"
+    );
     // console.log(hashedPass + convertedDOB);
     const newUser = {
       USERNAME: req.body.USERNAME,
@@ -91,7 +93,7 @@ router.post("/register", async function (req, res) {
 
 router.get("/profile", Auth, async function (req, res) {
   const userdata = req.session.loggedinUser;
-  userdata.DOB = moment(userdata.DOB, "YYYY/MM/DD").format("DD/MM/YYY");
+  userdata.DOB = moment(userdata.DOB, "YYYY/MM/DD").format("DD/MM/YYYY");
 
   //console.log(userdata);
   res.render("user/vAccount/profile", {
@@ -102,9 +104,12 @@ router.get("/profile", Auth, async function (req, res) {
 router.post("/profile", async function (req, res) {
   try {
     const hashedPass = bcrypt.hashSync(req.body.PASSWORD, 10);
-    const convertedDOB = moment(req.body.DOB, "DD/MM/YYY").format("YYYY/MM/DD");
-    // console.log(hashedPass + convertedDOB);
+    const convertedDOB = moment(req.body.DOB, "DD/MM/YYYY").format(
+      "YYYY/MM/DD"
+    );
+    console.log(convertedDOB);
     const newUser = {
+      ID_USER: req.body.ID_USER,
       USERNAME: req.body.USERNAME,
       PASSWORD: hashedPass,
       DOB: convertedDOB,
@@ -113,11 +118,29 @@ router.post("/profile", async function (req, res) {
       TYPE: 1,
       PROFILE: req.body.PROFILE,
     };
-    console.log(newUser);
-    await userModel.update(newUser);
-    res.render("user/vAccount/profile", { userdata: newUser });
+
+    //get user pass in db to compare
+
+    const user = await userModel.getSingle(newUser.ID_USER);
+
+    const ret = bcrypt.compareSync(req.body.OldPassword, user.PASSWORD);
+    //old password match
+    if (ret) {
+      newUser.DOB = moment(newUser.DOB, "YYYY/MM/DD").format("DD/MM/YYYY");
+      await userModel.update(newUser);
+      res.render("user/vAccount/profile", {
+        userdata: newUser,
+        err_message: "Update Successfull!!!",
+      });
+    } else {
+      res.render("user/vAccount/profile", {
+        userdata: req.session.loggedinUser,
+        err_message: "Wrong password, please type again!!!",
+      });
+    }
   } catch (error) {
     res.render("user/vAccount/profile", {
+      userdata: req.session.loggedinUser,
       err_message: "Somethings wrong, please check again!!!",
     });
   }
