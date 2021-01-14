@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.3",
     "datatables.net": "^1.10.23",
     "datatables.net-dt": "^1.10.23",
     "express": "^4.17.1",

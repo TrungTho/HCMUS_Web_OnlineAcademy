@@ -16,12 +16,12 @@ module.exports = {
   },
 
   del(Obj) {
-    // const condition = { ID: Obj.ID };
+    const condition = { ID_USER: Obj.ID_USER };
     return db.del(condition, TABLE_NAME);
   },
 
   update(Obj) {
-    // const condition = { ID: Obj.ID };
+    const condition = { ID_USER: Obj.ID_USER };
     return db.update(Obj, condition, TABLE_NAME);
   },
 
@@ -35,7 +35,7 @@ module.exports = {
 
   async getSingleByUsername(username) {
     const rows = await db.load(
-      `select * from ${TABLE_NAME} where Username = "${username}" `
+      `select * from ${TABLE_NAME} where USERNAME = "${username}" `
     );
     if (rows.length === 0) return null;
     return rows[0];

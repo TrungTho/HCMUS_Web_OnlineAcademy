@@ -17,8 +17,8 @@ router.get("/byCat/:id", async function (req, res) {
 
   const rows = await courseModel.byCat(catID);
   const category = await categoryModel.getSingle(catID);
-  console.log(catID + "--" + category);
-  console.log("----------------");
+  // console.log(catID + "--" + category);
+  // console.log("----------------");
   const items = [];
   for (let course of rows) {
     let instructor = await userModel.getSingle(course.ID_USER);
