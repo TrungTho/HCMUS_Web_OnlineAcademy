@@ -1,0 +1,14 @@
+.brief {
+    background-color: #dadada;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    height: 200px;
+}
+
+.img-wrapper {
+    float: right;
+    padding: 20px;
+}
