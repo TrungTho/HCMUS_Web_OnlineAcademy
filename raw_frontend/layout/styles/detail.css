@@ -1,23 +1,37 @@
 .brief {
-    background-color: #dadada;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
-    height: 250px;
-    padding: 20px;
-}
-
-.img-wrapper {
-    float: right;
+	background-color: #dadada;
+	border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	-ms-border-radius: 20px;
+	-o-border-radius: 20px;
+	height: 300px;
+	padding: 28px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    display: flex;
+    flex-flow: row-reverse;
+    align-items: center;
 }
 
 .img-wrapper img {
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	-o-border-radius: 10px;
+    width: 300px;
+    height: auto;
+}
+
+.comment {
+    width: 90%;
+    margin: 20px auto;
+    border: 2px solid #cacaca;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
-    height: 210px;
+    padding: 20px;
 }

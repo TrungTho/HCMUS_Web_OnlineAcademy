@@ -10,7 +10,7 @@
 
 
 {{#with product}}
-<div class="container">
+<div class="container" style="font-size: 16px;">
     <div class="course-detail">
         <h2>{{COURSENAME}}</h2>
         <div class="card-body">
@@ -18,75 +18,58 @@
                 <div class="img-wrapper"><img src="/resources/images/courses/{{ID_COURSE}}/{{ID_COURSE}}_main.png"
                         alt="{{COURSENAME}}" title="{{COURSENAME}}"></div>
 
-                <p class="card-text">Lastest update: {{LASTUPDATE}}</p>
-                <p class="card-text">Instructor: {{../instructor.FULLNAME}}</p>
+                <div style="margin-right: 20px;">
+                    <p class="card-text">Lastest update: {{LASTUPDATE}}</p>
+                    <p class="card-text">Instructor: {{../instructor.FULLNAME}}</p>
 
-                {{#if ../isDiscount}}
-                <p class="card-text"><span class="text"><del>{{format PRICE}} VND</del></span></p>
-                <p class="card-text">Price: <span class="text-danger">{{format ../realPrice}} VND</span></p>
-                {{else}}
-                <p class="card-text">Price: <span class="text-danger">{{format PRICE VND}}</span></p>
-                {{/if}}
-                <div class="my-rating"></div>
-                <p class="card-text">{{SHORTDES}}</p>
+                    {{#if ../isDiscount}}
+                    <p class="card-text"><span class="text"><del>{{format PRICE}} VND</del></span></p>
+                    <p class="card-text">Price: <span class="text-danger">{{format ../realPrice}} VND</span></p>
+                    {{else}}
+                    <p class="card-text">Price: <span class="text-danger">{{format PRICE VND}}</span></p>
+                    {{/if}}
+                    <div class="my-rating"></div>
+                    <p class="card-text">{{SHORTDES}}</p>
 
-                {{#if ../isLogin}}
-                <form action="/cart/add" method="POST">
-                    <div class="input-group mb-3">
-                        <input type="hidden" value="{{ProID}}" name="proid">
-                        <input type="text" class="form-control" placeholder="0" value="1" name="quantity">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-primary" type="submit" id="button-addon2">
-                                <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                Add to cart
-                            </button>
+                    {{#if ../isLogin}}
+                    <form action="/cart/add" method="POST">
+                        <div class="input-group mb-3">
+                            <input type="hidden" value="{{ProID}}" name="proid">
+                            <input type="text" class="form-control" placeholder="0" value="1" name="quantity">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary" type="submit" id="button-addon2">
+                                    <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                                    Add to cart
+                                </button>
+                            </div>
                         </div>
+                    </form>
+                    {{else}}
+                    <div class="input-group-append">
+                        <a href="../lesson/{{ID_COURSE}}">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-list" aria-hidden="true"></i>
+                                Learn!
+                            </button>
+                        </a>
                     </div>
-                </form>
-                {{else}}
-                <div class="input-group-append">
-                    <a href="../lesson/{{ID_COURSE}}">
-                        <button class="btn btn-outline-success" type="button" id="button-addon2">
-                            <i class="fas fa-list" aria-hidden="true"></i>
-                            Learn!
-                        </button>
-                    </a>
+                    {{/if}}
                 </div>
-                {{/if}}
+
             </div>
 
-
-            <p class="card-text">
-                {{{DESCRIPTION}}}
-            </p>
+            {{{DESCRIPTION}}}
         </div>
-    </div>
-
-
-    <div class="card-footer text-muted">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">UserName</th>
-                    <th scope="col">Rate</th>
-                    <th scope="col">Feedback</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each ../feedbackdata}}
-                <tr>
-
-                    <td>{{user.FULLNAME}}</td>
-                    <td>{{feedback.RATE}}</td>
-                    <td>{{feedback.FEEDBACK}}</td>
-
-                </tr>
-                {{/each}}
-            </tbody>
-            <tfoot>
-
-            </tfoot>
-        </table>
+        <div style="margin-top: 24px;">
+            <h2>Reviews</h2>
+            {{#each ../feedbackdata}}
+            <div class="comment">
+                <h4>{{user.FULLNAME}}</h4>
+                <div><strong>Rating: {{feedback.RATE}}/5</strong></div>
+                <div>{{feedback.FEEDBACK}}</div>
+            </div>
+            {{/each}}
+        </div>
     </div>
 </div>
 {{/with}}
