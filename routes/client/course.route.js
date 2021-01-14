@@ -16,7 +16,9 @@ router.get("/byCat/:id", async function (req, res) {
   }
 
   const rows = await courseModel.byCat(catID);
-  const CatName = await categoryModel.getSingle(rows[0].ID_CATE).CATENAME;
+  const category = await categoryModel.getSingle(catID);
+  console.log(catID + "--" + category);
+  console.log("----------------");
   const items = [];
   for (let course of rows) {
     let instructor = await userModel.getSingle(course.ID_USER);
@@ -41,7 +43,7 @@ router.get("/byCat/:id", async function (req, res) {
   }
 
   res.render("user/vCourse/byCat", {
-    CatName,
+    CatName: category.CATENAME,
     items,
     isEmpty: items.length === 0,
   });
