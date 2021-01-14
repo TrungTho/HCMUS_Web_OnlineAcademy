@@ -2,6 +2,32 @@
 <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.4/css/fileinput.min.css">
+
+<style>
+    .kv-avatar .krajee-default.file-preview-frame,
+    .kv-avatar .krajee-default.file-preview-frame:hover {
+        margin: 0;
+        padding: 0;
+        border: none;
+        box-shadow: none;
+        text-align: center;
+    }
+
+    .kv-avatar {
+        display: inline-block;
+    }
+
+    .kv-avatar .file-input {
+        display: table-cell;
+        width: 213px;
+    }
+
+    .kv-reqd {
+        color: red;
+        font-family: monospace;
+        font-weight: normal;
+    }
+</style>
 {{/section}}
 
 {{#section 'js'}}
@@ -9,6 +35,30 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.4/js/fileinput.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.4/themes/fa/theme.min.js"></script>
+
+<script>
+    var btnCust = '<button type="button" class="btn btn-secondary" title="Add picture tags" ' +
+        'onclick="alert(\'Call your custom code here.\')">' +
+        '<i class="glyphicon glyphicon-tag"></i>' +
+        '</button>';
+    $("#avatar").fileinput({
+        overwriteInitial: true,
+        maxFileSize: 1500,
+        showClose: false,
+        showCaption: false,
+        showBrowse: false,
+        browseOnZoneClick: true,
+        removeLabel: '',
+        removeIcon: '<i class="fa fa-trash" aria-hidden="true"></i>',
+        removeTitle: 'Cancel or reset changes',
+        elErrorContainer: '#kv-avatar-errors-2',
+        msgErrorClass: 'alert alert-block alert-danger',
+        defaultPreviewContent: '<img src="/resources/images/accounts/{{userdata.ID_USER}}.png" alt="Your Avatar"><h6 class="text-muted">Click to select</h6>',
+        layoutTemplates: { main2: '{preview} ' + ' {remove} {browse}' },
+        allowedFileExtensions: ["jpg", "png"]
+    });
+</script>
+
 <script>
     $('#formRegister').on('submit', function (e) {
         e.preventDefault();
@@ -50,22 +100,33 @@
             Student
             {{/if}} {{#if isInstructor}}
             Instructor
-            {{/if}} Profile</h2>
+            {{/if}} Profile
+        </h2>
+        <form action="" method="post" id="fromChangeAva" enctype="multipart/form-data">
 
-        <div class="sdb_holder">
-            <img src="/resources/images/accounts/{{userdata.ID_USER}}.png" alt="">
-        </div>
-        <div class="sdb_holder">
-            <a name="" id="" class="btn btn-outline-primary" href="#" role="button">Change
-                Avatar</a>
-        </div>
+            <div class="sdb_holder">
+                <img src="/resources/images/accounts/{{userdata.ID_USER}}.png" alt="">
+            </div>
+            <div class="kv-avatar">
+                <div class="file-loading">
+                    <input id="avatar" name="avatar" type="file" required>
+                </div>
+            </div>
+
+
+            <div class="sdb_holder">
+                <button class="btn btn-outline-primary" type="submit" formaction="/account/changeavatar">
+                    Change Avatar
+                </button>
+            </div>
+        </form>
         <!-- ################################################################################################ -->
     </div>
     <!-- ################################################################################################ -->
     <!-- ################################################################################################ -->
-    <div class="content three_quarter">
-        <!-- ################################################################################################ -->
-        <form action="" method="post" id="formRegister">
+    <form action="" method="post">
+        <div class="content three_quarter">
+            <!-- ################################################################################################ -->
             <div class="card">
                 <div class="card-header">
                     Account
@@ -120,15 +181,15 @@
 
                 </div>
                 <div class="card-footer text-muted">
-                    <button type="submit" class="btn btn-outline-success">
+                    <button type="submit" class="btn btn-outline-success" formaction="/account/profile">
                         <i class="fa fa-check" aria-hidden="true"></i>
                         Update Profile
                     </button>
                 </div>
             </div>
-        </form>
-        <!-- ################################################################################################ -->
-    </div>
+            <!-- ################################################################################################ -->
+        </div>
+    </form>
     <!-- ################################################################################################ -->
     <!-- / main body -->
     <div class="clear"></div>

@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const moment = require("moment");
 const userModel = require("../../models/user.model");
 const Auth = require("../../middlewares/auth.mdw");
+const multer = require("multer");
 
 router.get("/login", async function (req, res) {
   if (req.headers.referer) {
@@ -101,8 +102,37 @@ router.get("/profile", Auth, async function (req, res) {
   });
 });
 
+router.post("/changeavatar", async function (req, res) {
+  console.log("go");
+  //update image resource
+  //create path to store avatar image file
+  const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "/resources/images/accounts/");
+    },
+    filename: function (req, file, cb) {
+      let filename = "111.png";
+      // let filename = req.session.loggedinUser.ID_USER + "111.png";
+      console.log(filename);
+      cb(null, filename);
+    },
+  });
+
+  const upload = multer({ storage });
+  upload.single("avatar")(req, res, function (err) {
+    if (err) {
+    } else {
+      res.render("user/vAccount/profile", {
+        userdata: req.session.loggedinUser,
+        err_message: "Avatar changed",
+      });
+    }
+  });
+});
+
 router.post("/profile", async function (req, res) {
   try {
+    //get data from user input
     const hashedPass = bcrypt.hashSync(req.body.PASSWORD, 10);
     const convertedDOB = moment(req.body.DOB, "DD/MM/YYYY").format(
       "YYYY/MM/DD"
@@ -119,15 +149,16 @@ router.post("/profile", async function (req, res) {
       PROFILE: req.body.PROFILE,
     };
 
-    //get user pass in db to compare
-
+    //get user password in db to compare
     const user = await userModel.getSingle(newUser.ID_USER);
 
     const ret = bcrypt.compareSync(req.body.OldPassword, user.PASSWORD);
-    //old password match
+    //if old password match
     if (ret) {
-      newUser.DOB = moment(newUser.DOB, "YYYY/MM/DD").format("DD/MM/YYYY");
+      //update db data
       await userModel.update(newUser);
+
+      //rerender view
       res.render("user/vAccount/profile", {
         userdata: newUser,
         err_message: "Update Successfull!!!",
