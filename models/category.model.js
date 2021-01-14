@@ -11,18 +11,18 @@ module.exports = {
   },
 
   del(Obj) {
-    const condition = { CatID: Obj.CatID };
+    const condition = { ID_CATE: Obj.ID_CATE };
     return db.del(condition, TABLE_NAME);
   },
 
   update(Obj) {
-    const condition = { CatID: Obj.CatID };
+    const condition = { ID_CATE: Obj.ID_CATE };
     return db.update(Obj, condition, TABLE_NAME);
   },
 
   async getSingle(id) {
     const rows = await db.load(
-      `select * from ${TABLE_NAME} where CatID = ${id} `
+      `select * from ${TABLE_NAME} where ID_CATE = ${id} `
     );
     if (rows.length === 0) return null;
     return rows[0];
