@@ -83,7 +83,9 @@ router.post("/register", async function (req, res) {
     await userModel.add(newUser);
     // console.log(newUser);
     // console.log("hihi");
-    res.render("user/vAccount/register");
+    res.render("user/vAccount/register", {
+      err_message: "Register Successfull!!!",
+    });
   } catch (error) {
     res.render("user/vAccount/register", {
       // err_message: error,
