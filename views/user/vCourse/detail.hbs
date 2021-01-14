@@ -21,6 +21,15 @@
                 <p class="card-text">Lastest update: {{LASTUPDATE}}</p>
                 <p class="card-text">Instructor: {{../instructor.FULLNAME}}</p>
 
+                {{#if ../isDiscount}}
+                <p class="card-text"><span class="text"><del>{{format PRICE}} VND</del></span></p>
+                <p class="card-text">Price: <span class="text-danger">{{format ../realPrice}} VND</span></p>
+                {{else}}
+                <p class="card-text">Price: <span class="text-danger">{{format PRICE VND}}</span></p>
+                {{/if}}
+                <div class="my-rating"></div>
+                <p class="card-text">{{SHORTDES}}</p>
+
                 {{#if ../isLogin}}
                 <form action="/cart/add" method="POST">
                     <div class="input-group mb-3">
@@ -44,15 +53,6 @@
                     </a>
                 </div>
                 {{/if}}
-
-                {{#if ../isDiscount}}
-                <p class="card-text"><span class="text"><del>{{format PRICE}} VND</del></span></p>
-                <p class="card-text">Price: <span class="text-danger">{{format ../realPrice}} VND</span></p>
-                {{else}}
-                <p class="card-text">Price: <span class="text-danger">{{format PRICE VND}}</span></p>
-                {{/if}}
-                <div class="my-rating"></div>
-                <p class="card-text">{{SHORTDES}}</p>
             </div>
 
 

@@ -5,10 +5,19 @@
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
-    height: 200px;
+    height: 250px;
+    padding: 20px;
 }
 
 .img-wrapper {
     float: right;
-    padding: 20px;
+}
+
+.img-wrapper img {
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    height: 210px;
 }
