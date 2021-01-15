@@ -4,7 +4,6 @@
     const id = $(this).data('productid');
     //console.log(id);
     $('#txtProid').val(id);
-    $('#txtQuantity').val("1");
     $('#formAddToCart').submit();
   })
 </script>
@@ -12,8 +11,7 @@
 
 <div class="container">
   <form action="/cart/add" method="POST" id="formAddToCart">
-    <input type="hidden" name="proid" id="txtProid">
-    <input type="hidden" name="quantity" id="txtQuantity">
+    <input type="hidden" name="ID_COURSE" id="txtProid">
   </form>
 
   <h2>{{CatName}}</h2>
@@ -41,12 +39,22 @@
             <p class="card-text">{{course.SHORTDES}}</p>
           </div>
           <div class="card-footer text-muted">
-            <a href="/course/detail/{{course.ID_COURSE}}" class="btn btn-outline-primary">Detail</a>
+            <a href="/course/detail/{{course.ID_COURSE}}" class="btn btn-outline-primary">
+              <i class="fa fa-list-ol" aria-hidden="true"></i>
+              Detail
+            </a>
 
             {{#if ../isLogin}}
+
             <a data-productid="{{course.ID_COURSE}}" href="#" class="btn btn-outline-success addToCartButton">
+              <i class="fa fa-cart-plus" aria-hidden="true"></i>
               Add to cart
             </a>
+
+            <a data-productid="{{course.ID_COURSE}}" href="#" class="btn btn-outline-danger addToCartWishlist">
+              <i class="fa fa-heart" aria-hidden="true"></i>
+            </a>
+
             {{/if}}
           </div>
         </div>

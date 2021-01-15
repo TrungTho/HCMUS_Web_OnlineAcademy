@@ -1,4 +1,4 @@
-// const isAuth = require("./auth.mdw");
+const isAuth = require("./auth.mdw");
 
 module.exports = function (app) {
   //tao ra tai nguyen web
@@ -11,5 +11,5 @@ module.exports = function (app) {
   //app.use("/admin/products", require("../routes/admin/product.route"));
   app.use("/course", require("../routes/client/course.route"));
   app.use("/account", require("../routes/client/account.route"));
-  // app.use("/cart", isAuth, require("../routes/client/cart.route"));
+  app.use("/cart", isAuth, require("../routes/client/cart.route"));
 };

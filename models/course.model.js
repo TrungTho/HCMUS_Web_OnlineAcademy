@@ -21,7 +21,7 @@ module.exports = {
 
   async getSingle(id) {
     const rows = await db.load(
-      `select * from ${TABLE_NAME} where ID_Course = ${id} `
+      `select * from ${TABLE_NAME} where ID_COURSE = ${id} `
     );
     if (rows.length === 0) return null;
     return rows[0];

@@ -1,11 +1,27 @@
 {{#section 'js'}}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script src="jquery.star-rating-svg.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+<script>
+    $(function () {
 
+        $("#rateYo").rateYo({
+            starWidth: "20px",
+            halfStar: true
+        });
+    });
+</script>
+<script>
+    $('#rateYo').ready(function () {
+        const score = $(this).data('rate');
+        console.log(score);
+        $("#rateYo").rateYo("option", "rating", 1);
+    })
+</script>
 {{/section}}
 
 {{#section 'css'}}
 <link rel="stylesheet" type="text/css" href="../../../raw_frontend/layout/styles/detail.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 {{/section}}
 
 
@@ -19,8 +35,10 @@
                         alt="{{COURSENAME}}" title="{{COURSENAME}}"></div>
 
                 <div style="margin-right: 20px;">
-                    <p class="card-text">Lastest update: {{LASTUPDATE}}</p>
+                    <p class="card-text" id="txt">Lastest update: {{LASTUPDATE}}</p>
                     <p class="card-text">Instructor: {{../instructor.FULLNAME}}</p>
+
+                    <div data-rate="3" id="rateYo"></div>
 
                     {{#if ../isDiscount}}
                     <p class="card-text"><span class="text"><del>{{format PRICE}} VND</del></span></p>
@@ -28,20 +46,26 @@
                     {{else}}
                     <p class="card-text">Price: <span class="text-danger">{{format PRICE VND}}</span></p>
                     {{/if}}
-                    <div class="my-rating"></div>
                     <p class="card-text">{{SHORTDES}}</p>
 
                     {{#if ../isLogin}}
                     <form action="/cart/add" method="POST">
                         <div class="input-group mb-3">
-                            <input type="hidden" value="{{ProID}}" name="proid">
-                            <input type="text" class="form-control" placeholder="0" value="1" name="quantity">
+                            <input type="hidden" value="{{ID_COURSE}}" name="ID_COURSE">
                             <div class="input-group-append">
                                 <button class="btn btn-outline-primary" type="submit" id="button-addon2">
                                     <i class="fa fa-cart-plus" aria-hidden="true"></i>
                                     Add to cart
                                 </button>
                             </div>
+                            {{#if isBought}}
+
+                            {{else}}
+                            <a name="" id="" class="btn btn-outline-primary ml-2" href="#" role="button">
+                                <i class="fa fa-play" aria-hidden="true"></i>
+                                Preview
+                            </a>
+                            {{/if}}
                         </div>
                     </form>
                     {{else}}
@@ -66,6 +90,7 @@
             <div class="comment">
                 <h4>{{user.FULLNAME}}</h4>
                 <div><strong>Rating: {{feedback.RATE}}/5</strong></div>
+
                 <div>{{feedback.FEEDBACK}}</div>
             </div>
             {{/each}}

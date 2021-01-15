@@ -10,25 +10,47 @@
         <nav id="mainav" class="fl_right">
             <!-- ################################################################################################ -->
             <ul class="clear">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="#">Cart</a></li>
+                <li class="active"><a href="/">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        Home
+                    </a></li>
+                <li><a href="/cart">
+                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                        Cart
+                    </a></li>
                 <li>
-                    <a class="drop" href="#">Categories</a>
+                    <a class="drop" href="#">
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
+                        Categories
+                    </a>
                     <ul>
                         <li>
-                            <a class="drop" href="#">IT</a>
+                            <a class="drop" href="#">
+                                IT
+                            </a>
                             <ul>
                                 {{#each listCategories}}
-                                <li><a href="/course/byCat/{{ID_CATE}}">{{CATENAME}}</a></li>
+                                <li>
+                                    <a href="/course/byCat/{{ID_CATE}}">
+                                        <i class="fa fa-code" aria-hidden="true"></i>
+                                        {{CATENAME}}
+                                    </a>
+                                </li>
                                 {{/each}}
                             </ul>
                         </li>
                     </ul>
                 </li>
-                <li><a href="#">Teach on Youdemu</a></li>
+                <li><a href="#">
+                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                        Teach on Youdemu
+                    </a></li>
                 {{#if isLogin}}
                 <li>
-                    <a class="drop" href="#">Account</a>
+                    <a class="drop" href="#">
+                        <i class="fa fa-user-o" aria-hidden="true"></i>
+                        Account
+                    </a>
                     <ul>
                         <li>
                             <a href="/account/profile">
@@ -37,9 +59,12 @@
                             </a>
                         </li>
 
-                        <li><a href="#">
-                                <i class="fa fa-commenting" aria-hidden="true"></i>
-                                Notifications</a></li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                Notifications
+                            </a>
+                        </li>
 
                         <form id="formLogout" action="/account/logout" method="POST"></form>
                         <li>

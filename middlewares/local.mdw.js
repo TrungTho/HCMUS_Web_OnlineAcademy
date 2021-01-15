@@ -1,3 +1,4 @@
+const cartModel = require("../models/cart.model");
 const categoryModel = require("../models/category.model");
 const coursesCategoryModel = require("../models/course-category.model");
 
@@ -14,7 +15,7 @@ module.exports = function (app) {
     res.locals.isAdmin = req.session.isAdmin;
     res.locals.isInstructor = req.session.isInstructor;
     res.locals.isStudent = req.session.isStudent;
-    //res.locals.cartSum = cartModel.getTotalItems(req.session.cart);
+    res.locals.cartSum = cartModel.getTotalItems(req.session.cart);
 
     next();
   });

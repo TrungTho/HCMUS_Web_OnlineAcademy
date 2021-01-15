@@ -77,7 +77,7 @@ router.get("/detail/:id", async function (req, res) {
   let feedbackdata = [];
   for (let feedback of usercourse) {
     let user = await userModel.getSingle(feedback.ID_USER);
-    console.log(user);
+    //console.log(user);
     feedbackdata.push({
       feedback,
       user,

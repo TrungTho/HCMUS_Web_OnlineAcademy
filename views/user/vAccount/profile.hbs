@@ -11,6 +11,7 @@
         border: none;
         box-shadow: none;
         text-align: center;
+        align-items: center;
     }
 
     .kv-avatar {
@@ -94,7 +95,7 @@
 <main class="hoc container clear">
     <!-- main body -->
     <!-- ################################################################################################ -->
-    <div class="sidebar one_quarter first">
+    <div class="sidebar one_quarter first align-content-center">
         <!-- ################################################################################################ -->
         <h2>{{#if isStudent}}
             Student
@@ -104,20 +105,20 @@
         </h2>
         <form action="" method="post" id="fromChangeAva" enctype="multipart/form-data">
 
-            <div class="sdb_holder">
-                <img src="/resources/images/accounts/{{userdata.ID_USER}}.png" alt="">
-            </div>
-            <div class="kv-avatar">
-                <div class="file-loading">
-                    <input id="avatar" name="avatar" type="file" required>
+            <div class="sdb_holder align-items-center">
+
+                <div class="kv-avatar">
+                    <div class="file-loading">
+                        <input id="avatar" name="avatar" type="file" required>
+                    </div>
                 </div>
-            </div>
 
 
-            <div class="sdb_holder">
-                <button class="btn btn-outline-primary" type="submit" formaction="/account/changeavatar">
-                    Change Avatar
-                </button>
+                <div class="sdb_holder ">
+                    <button class="btn btn-outline-primary" type="submit" formaction="/account/changeavatar">
+                        Change Avatar
+                    </button>
+                </div>
             </div>
         </form>
         <!-- ################################################################################################ -->

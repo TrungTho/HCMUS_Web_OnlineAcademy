@@ -1,0 +1,141 @@
+{{#section 'js'}}
+<script>
+  $('.removeItem').on('click', function () {
+    const id = $(this).data('productid');
+    console.log(id);
+    $('#txtForId').val(id);
+    $('#formIdToDel').submit();
+  })
+</script>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#table_id').DataTable();
+  });
+</script>
+
+{{/section}}
+
+{{#section 'css'}}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+{{/section}}
+
+<main class="hoc container clear">
+  <!-- main body -->
+  <!-- ################################################################################################ -->
+  <div class="sidebar one_quarter first">
+    <!-- ################################################################################################ -->
+    <h6>Management</h6>
+
+    <div class="sdb_holder">
+      <h6>Lorem ipsum dolor</h6>
+      <address>
+        Full Name<br>
+        Address Line 1<br>
+        Address Line 2<br>
+        Town/City<br>
+        Postcode/Zip<br>
+        <br>
+        Tel: xxxx xxxx xxxxxx<br>
+        Email: <a href="#">contact@domain.com</a>
+      </address>
+    </div>
+    <div class="sdb_holder">
+      <article>
+        <h6>Lorem ipsum dolor</h6>
+        <p>Nuncsed sed conseque a at quismodo tris mauristibus sed habiturpiscinia sed.</p>
+        <ul>
+          <li><a href="#">Lorem ipsum dolor sit</a></li>
+          <li>Etiam vel sapien et</li>
+          <li><a href="#">Etiam vel sapien et</a></li>
+        </ul>
+        <p>Nuncsed sed conseque a at quismodo tris mauristibus sed habiturpiscinia sed.
+          Condimentumsantincidunt dui mattis magna intesque purus orci augue lor nibh.</p>
+        <p class="more"><a href="#">Continue Reading &raquo;</a></p>
+      </article>
+    </div>
+    <!-- ################################################################################################ -->
+  </div>
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <div class="content three_quarter">
+    <!-- ################################################################################################ -->
+    <h1>Your cart </h1>
+
+    <div class="card">
+      <div class="card-header">Category</div>
+      <div class="card-body">
+        {{#if this.isEmpty}}
+        <h4>Empty Cart</h4>
+        {{else}}
+        <table class="display" id="table_id">
+          <thead>
+            <tr>
+              <th scope="col">Course Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Discount</th>
+              <th scope="col">Amount</th>
+              <th scope="col">&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <form id="formIdToDel" action="/cart/remove" method="post">
+              <input type="hidden" name="id" id="txtForId">
+            </form>
+            {{#each this.items}}
+            <tr>
+              <th scope="row">
+                <a href="/course/detail/{{course.ID_COURSE}}">
+                  {{course.COURSENAME}}
+                </a>
+              </th>
+              <td>{{format course.PRICE}}</td>
+              <td>{{course.DISCOUNT}} %</td>
+              <td>{{format realPrice}}</td>
+              <td class="text-left">
+                <a data-productid="{{course.ID_COURSE}}" class="btn-sm btn-danger removeItem" href="javascript:;"
+                  title="Remove" role="button">
+                  <i class="fa fa-eraser" aria-hidden="true"></i>
+                </a>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+          <tfoot>
+            <th>
+              <b> Total: </b>
+            </th>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>
+              <span class="text-danger font-weight-bold">
+                {{format totalMoney}}
+              </span>
+            </td>
+            <td>&nbsp;</td>
+          </tfoot>
+        </table>
+        {{/if}}
+      </div>
+      <div class="card-footer justify-content-center">
+        {{#if this.isEmpty}}
+
+        {{else}}
+
+        <form action="/cart/confirm" method="POST" id="formConfirmOrder">
+          <button class="btn btn-outline-success col-10" href="#" type="submit">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            Confirm
+          </button>
+        </form>
+        {{/if}}
+      </div>
+    </div>
+
+    <!-- ################################################################################################ -->
+  </div>
+  <!-- ################################################################################################ -->
+  <!-- / main body -->
+  <div class="clear"></div>
+</main>

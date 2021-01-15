@@ -24,7 +24,7 @@ router.post("/add", async function (req, res) {
 router.post("/del", async function (req, res) {
   //check if del cat has had courses=> prevent del
   const courses = await courseModel.byCat(req.body.ID_CATE);
-  console.log(courses);
+  //console.log(courses);
   if (courses.length === 0) {
     const ret = await categoryModel.del(req.body);
     res.redirect("/admin/categories");

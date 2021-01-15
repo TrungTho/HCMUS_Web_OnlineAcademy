@@ -105,7 +105,6 @@ router.get("/profile", Auth, async function (req, res) {
 });
 
 router.post("/changeavatar", async function (req, res) {
-  console.log("go");
   //update image resource
   //create path to store avatar image file
   const storage = multer.diskStorage({
