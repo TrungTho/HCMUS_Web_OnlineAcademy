@@ -11,17 +11,19 @@ router.get("/", async function (req, res) {
   for (let ci of req.session.cart) {
     const datum = await courseModel.getSingle(ci);
     let realPrice = datum.PRICE;
+    let realDiscount = 0;
     if (isNaN(parseInt(datum.DISCOUNT))) {
     } else {
       realPrice =
         parseInt(realPrice) -
         (parseInt(realPrice) * parseInt(datum.DISCOUNT)) / 100;
+      realDiscount = parseInt(datum.DISCOUNT);
     }
-    console.log(datum);
-    console.log("----------------------");
+
     items.push({
       course: datum,
       realPrice,
+      realDiscount,
     });
   }
 

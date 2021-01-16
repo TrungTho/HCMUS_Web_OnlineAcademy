@@ -40,7 +40,11 @@ module.exports = {
       let price = parseInt(course.PRICE);
 
       if (isNaN(discount)) {
-        total += price;
+        if (isNaN(price)) {
+          total += 0;
+        } else {
+          total += price;
+        }
       } else {
         total += price - (price * discount) / 100;
       }

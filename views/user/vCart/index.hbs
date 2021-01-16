@@ -62,6 +62,9 @@
   <div class="content three_quarter">
     <!-- ################################################################################################ -->
     <h1>Your cart </h1>
+    <form action="/cart/remove" id="formIdToDel" method="post">
+      <input type="text" name="id" id="txtForId">
+    </form>
 
     <div class="card">
       <div class="card-header">Category</div>
@@ -80,9 +83,7 @@
             </tr>
           </thead>
           <tbody>
-            <form id="formIdToDel" action="/cart/remove" method="post">
-              <input type="hidden" name="id" id="txtForId">
-            </form>
+
             {{#each this.items}}
             <tr>
               <th scope="row">
@@ -91,7 +92,7 @@
                 </a>
               </th>
               <td>{{format course.PRICE}}</td>
-              <td>{{course.DISCOUNT}} %</td>
+              <td>{{realDiscount}} %</td>
               <td>{{format realPrice}}</td>
               <td class="text-left">
                 <a data-productid="{{course.ID_COURSE}}" class="btn-sm btn-danger removeItem" href="javascript:;"
