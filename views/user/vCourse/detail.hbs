@@ -49,6 +49,17 @@
                     <p class="card-text">{{SHORTDES}}</p>
 
                     {{#if ../isLogin}}
+                    {{#if ../isBought}}
+                    <div class="input-group-append">
+                        <a href="../lesson/{{ID_COURSE}}">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-list" aria-hidden="true"></i>
+                                Learn!
+                            </button>
+                        </a>
+                    </div>
+
+                    {{else}}
                     <form action="/cart/add" method="POST">
                         <div class="input-group mb-3">
                             <input type="hidden" value="{{ID_COURSE}}" name="ID_COURSE">
@@ -58,25 +69,18 @@
                                     Add to cart
                                 </button>
                             </div>
-                            {{#if isBought}}
-
-                            {{else}}
                             <a name="" id="" class="btn btn-outline-primary ml-2" href="#" role="button">
                                 <i class="fa fa-play" aria-hidden="true"></i>
                                 Preview
                             </a>
-                            {{/if}}
                         </div>
                     </form>
+                    {{/if}}
                     {{else}}
-                    <div class="input-group-append">
-                        <a href="../lesson/{{ID_COURSE}}">
-                            <button class="btn btn-primary">
-                                <i class="fas fa-list" aria-hidden="true"></i>
-                                Learn!
-                            </button>
-                        </a>
-                    </div>
+                    <a name="" id="" class="btn btn-outline-primary ml-2" href="#" role="button">
+                        <i class="fa fa-play" aria-hidden="true"></i>
+                        Preview
+                    </a>
                     {{/if}}
                 </div>
 

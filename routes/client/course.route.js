@@ -2,6 +2,7 @@ const express = require("express");
 const categoryModel = require("../../models/category.model");
 const router = express.Router();
 const courseModel = require("../../models/course.model");
+const orderDetailModel = require("../../models/order-detail.model");
 const userCourseModel = require("../../models/user-course.model");
 const userModel = require("../../models/user.model");
 
@@ -84,12 +85,28 @@ router.get("/detail/:id", async function (req, res) {
     });
   }
 
+  //check that logged user has bought this course or not
+  let isBought = false;
+  if (req.session.isLogin) {
+    const orderdetail = await orderDetailModel.allByUserAndCourseId(
+      req.session.loggedinUser.ID_USER,
+      req.params.id
+    );
+
+    if (orderdetail.length === 0) {
+    } else {
+      isBought = true;
+    }
+  }
+  console.log(isBought);
   res.render("user/vCourse/detail", {
     product: course,
     realPrice,
     isDiscount,
     instructor,
     feedbackdata,
+    isBought,
+    isLogin: req.session.isLogin,
   });
 });
 

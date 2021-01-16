@@ -41,7 +41,7 @@ router.get("/", async function (req, res) {
     });
   }
 
-  res.render("user/vCourse/byCat", {
+  res.render("user/vCourse/myCourses", {
     CatName: "My courses",
     items,
     isEmpty: items.length === 0,

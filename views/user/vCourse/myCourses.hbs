@@ -18,7 +18,7 @@
   <div class="card-body">
     {{#if this.isEmpty}}
     <h4 class="card-title">Sorry</h4>
-    <p class="card-text">This category do not have any courses yet. Please come later!!!</p>
+    <p class="card-text">You has not enrolled any courses yet!!!</p>
     {{else}}
     <div class="row">
       {{#each this.items}}
@@ -43,19 +43,6 @@
               <i class="fa fa-list-ol" aria-hidden="true"></i>
               Detail
             </a>
-
-            {{#if ../isStudent}}
-
-            <a data-productid="{{course.ID_COURSE}}" href="#" class="btn btn-outline-success addToCartButton">
-              <i class="fa fa-cart-plus" aria-hidden="true"></i>
-              Add to cart
-            </a>
-
-            <a data-productid="{{course.ID_COURSE}}" href="#" class="btn btn-outline-danger addToCartWishlist">
-              <i class="fa fa-heart" aria-hidden="true"></i>
-            </a>
-
-            {{/if}}
           </div>
         </div>
       </div>
