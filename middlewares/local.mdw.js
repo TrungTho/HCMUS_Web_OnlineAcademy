@@ -1,6 +1,5 @@
 const cartModel = require("../models/cart.model");
 const categoryModel = require("../models/category.model");
-const coursesCategoryModel = require("../models/course-category.model");
 
 module.exports = function (app) {
   //transfer from req.session to res.locals so that view can get data
@@ -8,6 +7,9 @@ module.exports = function (app) {
     if (typeof req.session.isLogin === "undefined") {
       req.session.isLogin = false;
       req.session.cart = []; //to store which item client choose and it's quantity
+      res.session.isAdmin = false;
+      res.session.isInstructor = false;
+      res.session.isStudent = false;
     }
 
     res.locals.isLogin = req.session.isLogin;

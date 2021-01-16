@@ -25,13 +25,24 @@ router.post("/login", async function (req, res) {
       req.session.loggedinUser = datum;
 
       //check user role
-      if (datum.TYPE === "0") {
+      if (parseInt(datum.TYPE) === 0) {
         req.session.isAdmin = true;
-      } else if (datum.TYPE === "1") {
+        req.session.isInstructor = false;
+        req.session.isStudent = false;
+      } else if (parseInt(datum.TYPE) === 1) {
         req.session.isInstructor = true;
+        req.session.isAdmin = false;
+        req.session.isStudent = false;
       } else {
         req.session.isStudent = true;
+        req.session.isAdmin = false;
+        req.session.isInstructor = false;
       }
+
+      console.log(parseInt(datum.TYPE));
+      console.log(req.session.isAdmin);
+      console.log(req.session.isStudent);
+      console.log(req.session.isInstructor);
 
       let url = req.session.retUrl || "/";
       res.redirect(url);
@@ -77,7 +88,7 @@ router.post("/register", async function (req, res) {
       DOB: convertedDOB,
       FULLNAME: req.body.FULLNAME,
       EMAIL: req.body.EMAIL,
-      TYPE: 1,
+      TYPE: 2,
       PROFILE: req.body.PROFILE,
     };
     await userModel.add(newUser);

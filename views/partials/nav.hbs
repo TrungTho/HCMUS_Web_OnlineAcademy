@@ -59,6 +59,22 @@
                             </a>
                         </li>
 
+                        {{#if isAdmin}}
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-bookmark" aria-hidden="true"></i>
+                                Management
+                            </a>
+                        </li>
+                        {{else}}
+                        <li>
+                            <a href="/my-course/">
+                                <i class="fa fa-bookmark" aria-hidden="true"></i>
+                                My courses
+                            </a>
+                        </li>
+                        {{/if}}
+
                         <li>
                             <a href="#">
                                 <i class="fa fa-envelope" aria-hidden="true"></i>
