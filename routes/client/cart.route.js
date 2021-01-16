@@ -3,11 +3,11 @@ const router = express.Router();
 const cartModel = require("../../models/cart.model");
 const courseModel = require("../../models/course.model");
 const moment = require("moment");
+const orderModel = require("../../models/order.model");
+const orderDetailModel = require("../../models/order-detail.model");
 
 router.get("/", async function (req, res) {
   const items = [];
-  console.log(req.session.cart);
-  console.log("-----------------------------");
   for (let ci of req.session.cart) {
     const datum = await courseModel.getSingle(ci);
     let realPrice = datum.PRICE;
@@ -49,16 +49,43 @@ router.post("/remove", async function (req, res) {
 router.post("/confirm", async function (req, res) {
   //step 1: add data to order table
   const newOrder = {
-    OrderDate: moment().format("YYYY-MM-DD HH:mm:ss"),
-    UserID: req.session.loggedinUser.f_ID,
-    Total: await cartModel.getTotalMoney(req.session.cart),
+    ORDERDATE: moment().format("YYYY-MM-DD HH:mm:ss"),
+    ID_USER: req.session.loggedinUser.ID_USER,
+    TOTAL: await cartModel.getTotalMoney(req.session.cart),
   };
 
   await orderModel.add(newOrder);
-  console.log(newOrder);
+  //console.log(newOrder);
 
-  //step 2: add data to order detail table...
+  //step 2: add data to order detail table from cart
+  for (let id of req.session.cart) {
+    //get course to get price
+    let datum = await courseModel.getSingle(id);
+    //calculate realprice
+    let realPrice;
+    if (!datum.PRICE) {
+      realPrice = 0;
+    } else {
+      realPrice = parseInt(datum.PRICE);
+    }
 
+    if (isNaN(parseInt(datum.DISCOUNT))) {
+    } else {
+      realPrice =
+        parseInt(realPrice) -
+        (parseInt(realPrice) * parseInt(datum.DISCOUNT)) / 100;
+    }
+    //init new detail order row
+    let detail = {
+      ID_ORDER: newOrder.ID_ORDER,
+      ID_USER: req.session.loggedinUser.ID_USER,
+      ID_COURSE: id,
+      AMOUNT: realPrice,
+    };
+
+    //add new row to db
+    await orderDetailModel.add(detail);
+  }
   //step 3: clear cart
   req.session.cart = [];
   res.redirect(req.headers.referer);
