@@ -7,9 +7,6 @@ module.exports = function (app) {
     if (typeof req.session.isLogin === "undefined") {
       req.session.isLogin = false;
       req.session.cart = []; //to store which item client choose and it's quantity
-      res.session.isAdmin = false;
-      res.session.isInstructor = false;
-      res.session.isStudent = false;
     }
 
     res.locals.isLogin = req.session.isLogin;

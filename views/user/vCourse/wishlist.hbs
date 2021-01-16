@@ -8,28 +8,30 @@
   })
 </script>
 <script>
-  $('.addToWishlist').on('click', function () {
+  $('.removeFromWishlist').on('click', function () {
     const id = $(this).data('productid');
     //console.log(id);
-    $('#txtIdToWishList').val(id);
-    $('#formAddToWishList').submit();
+    $('#txtIdRemoveWishlist').val(id);
+    $('#formRemoveWishlist').submit();
   })
 </script>
 {{/section}}
 
 <div class="container">
+
   <form action="/cart/add" method="POST" id="formAddToCart">
     <input type="hidden" name="ID_COURSE" id="txtProid">
   </form>
-  <form action="/wishlist/add" method="post" id="formAddToWishList">
-    <input type="hidden" name="ID_COURSE" id="txtIdToWishList">
+
+  <form action="/wishlist/remove" method="POST" id="formRemoveWishlist">
+    <input type="hidden" name="ID_COURSE" id="txtIdRemoveWishlist">
   </form>
 
   <h2>{{CatName}}</h2>
   <div class="card-body">
     {{#if this.isEmpty}}
     <h4 class="card-title">Sorry</h4>
-    <p class="card-text">This category do not have any courses yet. Please come later!!!</p>
+    <p class="card-text">You have not liked any courses yet!!!</p>
     {{else}}
     <div class="row">
       {{#each this.items}}
@@ -54,7 +56,6 @@
               <i class="fa fa-list-ol" aria-hidden="true"></i>
               Detail
             </a>
-
             {{#if ../isStudent}}
 
             <a data-productid="{{course.ID_COURSE}}" href="#" class="btn btn-outline-success addToCartButton">
@@ -62,8 +63,9 @@
               Add to cart
             </a>
 
-            <a data-productid="{{course.ID_COURSE}}" href="#" class="btn btn-outline-danger addToWishlist">
-              <i class="fa fa-heart" aria-hidden="true"></i>
+            <a data-productid="{{course.ID_COURSE}}" href="#" class="btn btn-outline-danger removeFromWishlist">
+              <i class="fa fa-heartbeat" aria-hidden="true"></i>
+              Remove
             </a>
 
             {{/if}}
