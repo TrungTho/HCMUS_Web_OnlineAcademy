@@ -131,10 +131,26 @@ router.post("/feedback", async function (req, res) {
 
 router.get("/lesson/:id", async function (req, res) {
   const courseid = req.params.id;
+  const lessonid = req.query.lessonid;
+
+  console.log(courseid + lessonid);
+
+  //get all lesson of that course
   const lessons = await lessonModel.allByCourseId(courseid);
-  console.log(courseid + lessons);
+  console.log(lessons);
+
+  let playlesson;
+  //get lesson that show in play
+  if (isNaN(parseInt(lessonid))) {
+    playlesson = lessons[0];
+  } else {
+    console.log("oh no");
+    playlesson = await lessonModel.getSingle(lessonid);
+  }
+  console.log(playlesson);
   res.render("user/vCourse/lesson", {
     lessons,
+    playlesson,
   });
 });
 
