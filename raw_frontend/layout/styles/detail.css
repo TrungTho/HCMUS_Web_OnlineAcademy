@@ -7,11 +7,11 @@
 	-o-border-radius: 20px;
 	height: 300px;
 	padding: 28px;
-    margin-bottom: 40px;
-    margin-top: 20px;
-    display: flex;
-    flex-flow: row-reverse;
-    align-items: center;
+	margin-bottom: 40px;
+	margin-top: 20px;
+	display: flex;
+	flex-flow: row-reverse;
+	align-items: center;
 }
 
 .img-wrapper img {
@@ -20,18 +20,43 @@
 	-moz-border-radius: 10px;
 	-ms-border-radius: 10px;
 	-o-border-radius: 10px;
-    width: 300px;
-    height: auto;
+	width: 300px;
+	height: auto;
 }
 
 .comment {
-    width: 90%;
-    margin: 20px auto;
-    border: 2px solid #cacaca;
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
+	width: 90%;
+	margin: 20px auto;
+	border: 2px solid #cacaca;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	-o-border-radius: 10px;
     padding: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.comment img {
+    height: 120px;
+}
+
+.instructor {
+    display: flex;
+    justify-content: center;
+    background-color: #dadada;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    width: 320px;
+}
+
+.instructor img {
+    height: 120px;
 }
