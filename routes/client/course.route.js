@@ -118,6 +118,16 @@ router.get("/detail/:id", async function (req, res) {
   });
 });
 
+router.post("/feedback", async function (req, res) {
+  const ID_COURSE = req.body.ID_COURSE;
+  const ID_USER = req.session.loggedinUser.ID_USER;
+  const RATE = req.body.RATE;
+  const FEEDBACK = req.body.FEEDBACK;
+
+  await userCourseModel.add({ ID_COURSE, ID_USER, RATE, FEEDBACK });
+  res.redirect(req.headers.referer);
+});
+
 router.get("/lesson/:id", async function (req, res) {
   res.render("user/vCourse/lesson", {});
 });

@@ -12,9 +12,8 @@
 </script>
 <script>
     $('#rateYo').ready(function () {
-        const score = $(this).data('rate');
-        console.log(score);
-        $("#rateYo").rateYo("option", "rating", 1);
+        const score = $(this).data('ratescore');
+        //$("#rateYo").rateYo("option", "rating", score);
     })
 </script>
 {{/section}}
@@ -37,7 +36,7 @@
                 <div style="margin-right: 20px;">
                     <p class="card-text" id="txt">Lastest update: {{LASTUPDATE}}</p>
 
-                    <div data-rate="3" id="rateYo"></div>
+                    <div data-ratescore="3" id="rateYo"></div>
 
                     {{#if ../isDiscount}}
                     <p class="card-text"><span class="text"><del>{{format PRICE}} VND</del></span></p>
@@ -110,6 +109,26 @@
                 </div>
             </div>
             {{/each}}
+        </div>
+
+        <div class="bg-danger">
+            <h2>Write Your Feedback</h2>
+            <form action="/course/feedback" method="post">
+                <div>
+                    <input type="range" name="RATE" id="inputrating" aria-valuemax="5" aria-valuemin="1"
+                        aria-valuenow="5" value="5" aria-valuetext="rate">
+                </div>
+                <input type="text" value="{{ID_COURSE}}" name="ID_COURSE">
+                <div class="block clear">
+                    <label for="FEEDBACKK">How do you think?</label>
+                    <textarea name="FEEDBAKK" id="FEEDBAKK" style="width: 100%;" rows="10"></textarea>
+                </div>
+                <div>
+                    <input type="submit" name="submit" value="Submit Feedback">
+                    &nbsp;
+                    <input type="reset" name="reset" value="Reset Form">
+                </div>
+            </form>
         </div>
     </div>
 </div>
