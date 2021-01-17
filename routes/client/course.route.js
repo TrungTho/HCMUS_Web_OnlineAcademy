@@ -133,24 +133,42 @@ router.get("/lesson/:id", async function (req, res) {
   const courseid = req.params.id;
   const lessonid = req.query.lessonid;
 
-  console.log(courseid + lessonid);
+  // console.log(courseid + lessonid);
 
   //get all lesson of that course
   const lessons = await lessonModel.allByCourseId(courseid);
-  console.log(lessons);
+
+  // console.log(lessons);
 
   let playlesson;
   //get lesson that show in play
   if (isNaN(parseInt(lessonid))) {
     playlesson = lessons[0];
   } else {
-    console.log("oh no");
     playlesson = await lessonModel.getSingle(lessonid);
   }
-  console.log(playlesson);
+
+  //check that user has bought this course yet?
+  let isBought = false;
+  if (req.session.isLogin) {
+    if (req.session.isStudent) {
+      const rows = orderDetailModel.allByUserAndCourseId(
+        req.session.loggedinUser.ID_USER,
+        courseid
+      );
+      if (rows.length === 0) {
+      } else {
+        isBought = true;
+      }
+    }
+  }
+
+  console.log("hehe" + isBought);
+
   res.render("user/vCourse/lesson", {
     lessons,
     playlesson,
+    isBought,
   });
 });
 

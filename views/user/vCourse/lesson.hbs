@@ -40,7 +40,11 @@
 
                         <td><a href="/course/lesson/{{ID_COURSE}}?lessonid={{ID_DETAIL}}">{{LESSONNAME}}</a></td>
                         {{else}}
+                        {{#if ../isBought}}
+                        <td><a href="/course/lesson/{{ID_COURSE}}?lessonid={{ID_DETAIL}}">{{LESSONNAME}}</a></td>
+                        {{else}}
                         <td>{{LESSONNAME}}</td>
+                        {{/if}}
 
                         {{/if}}
                         {{#if ../isInstructor}}
