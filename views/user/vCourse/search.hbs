@@ -17,6 +17,50 @@
 </script>
 {{/section}}
 
+<style>
+  .dropbtn {
+    background-color: #1D8B94;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #f1f1f1
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown:hover .dropbtn {
+    background-color: #1D8B94;
+  }
+</style>
+
 <div class="container">
   <form action="/cart/add" method="POST" id="formAddToCart">
     <input type="hidden" name="ID_COURSE" id="txtProid">
@@ -26,45 +70,28 @@
   </form>
 
   <h2>{{CatName}}</h2>
-  <div class="bg-danger">
-    <li>
-      <a class="drop" href="#">
-        <i class="fa fa-filter" aria-hidden="true"></i>
-        Filter
+  <div class="dropdown">
+    <button class="dropbtn">Filter</button>
+    <div class="dropdown-content">
+      <a href="/search?ascend=1&searchstring={{CatName}}">
+        <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
+        Name: A-Z
       </a>
-      <ul>
-        <li>
-          <a href="/search?ascend=1&searchstring={{CatName}}">
-            <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
-            Name: A-Z
-          </a>
-        </li>
-
-        <li>
-          <a href="/search?descend=1&searchstring={{CatName}}">
-            <i class="fa fa-sort-alpha-desc" aria-hidden="true"></i>
-            Name: Z-A
-          </a>
-        </li>
-
-        <li>
-          <a href="/search?priceascend=1&searchstring={{CatName}}">
-            <i class="fa fa-money" aria-hidden="true"></i>
-            Price: Low to high
-          </a>
-        </li>
-
-        <li>
-          <a href="/search?pricedescend=1&searchstring={{CatName}}">
-            <i class="fa fa-money" aria-hidden="true"></i>
-            Price: High to low
-          </a>
-        </li>
-
-
-      </ul>
-    </li>
+      <a href="/search?descend=1&searchstring={{CatName}}">
+        <i class="fa fa-sort-alpha-desc" aria-hidden="true"></i>
+        Name: Z-A
+      </a>
+      <a href="/search?pricedescend=1&searchstring={{CatName}}">
+        <i class="fa fa-money" aria-hidden="true"></i>
+        Price: Low to high
+      </a>
+      <a href="/search?priceascend=1&searchstring={{CatName}}">
+        <i class="fa fa-money" aria-hidden="true"></i>
+        Price: High to low
+      </a>
+    </div>
   </div>
+
   <div class="card-body">
     {{#if this.isEmpty}}
     {{else}}
