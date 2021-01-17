@@ -6,6 +6,10 @@ module.exports = {
     return db.load(`select * from ${TABLE_NAME} where ISDISABLE = 0`);
   },
 
+  add(newObj) {
+    return db.add(newObj, TABLE_NAME);
+  },
+
   allByInstructorId(userid) {
     return db.load(
       `select * from ${TABLE_NAME} where ID_USER = ${userid} and ISDISABLE = 0`

@@ -55,11 +55,48 @@ router.get("/", async function (req, res) {
 
 router.get("/add", async function (req, res) {
   const categories = await categoryModel.all();
-  console.log(moment().format("DD/MM/YYYY"));
+  //console.log(moment().format("DD/MM/YYYY"));
   res.render("instructor/vCourse/new-course", {
     categories,
     user: req.session.loggedinUser,
     today: moment().format("DD/MM/YYYY"),
+  });
+});
+
+router.post("/add", async function (req, res) {
+  console.log(req.body);
+  let course = {
+    ID_USER: req.session.loggedinUser.ID_USER,
+    ID_CATE: +req.body.ID_CATE,
+    COURSENAME: req.body.COURSENAME,
+    COURSELENGTH: +req.body.COURSELENGTH,
+    CREATEDATE: moment(req.body.CREATEDATE, "DD/MM/YYYY").format("YYYY-MM-DD"),
+    LASTUPDATE: moment(req.body.CREATEDATE, "DD/MM/YYYY").format("YYYY-MM-DD"),
+    PRICE: req.body.PRICE,
+    VIEWED: 0,
+    SHORTDES: req.body.SHORTDES,
+    DESCRIPTION: req.body.DESCRIPTION,
+    DISCOUNT: +req.body.DISCOUNT,
+    DONE: +req.body.DONE,
+    ISDISABLE: 0,
+  };
+
+  console.log(course);
+  let categories;
+  try {
+    await courseModel.add(course);
+    err_message = "Save Successfully!!!";
+    categories = await categoryModel.all();
+  } catch (error) {
+    err_message = "Somethings wrong, please check again!!!";
+    categories = course;
+  }
+
+  res.render("instructor/vCourse/new-course", {
+    categories,
+    user: req.session.loggedinUser,
+    today: moment().format("DD/MM/YYYY"),
+    err_message,
   });
 });
 

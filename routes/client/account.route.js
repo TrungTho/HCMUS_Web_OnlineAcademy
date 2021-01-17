@@ -90,7 +90,7 @@ router.post("/register", async function (req, res) {
   try {
     const hashedPass = bcrypt.hashSync(req.body.PASSWORD, 10);
     const convertedDOB = moment(req.body.DOB, "DD/MM/YYYY").format(
-      "YYYY/MM/DD"
+      "YYYY-MM-DD"
     );
     // console.log(hashedPass + convertedDOB);
     const newUser = {
@@ -184,7 +184,7 @@ router.post("/profile", async function (req, res) {
     //get data from user input
     const hashedPass = bcrypt.hashSync(req.body.PASSWORD, 10);
     const convertedDOB = moment(req.body.DOB, "DD/MM/YYYY").format(
-      "YYYY/MM/DD"
+      "YYYY-MM-DD"
     );
     console.log(convertedDOB);
     const newUser = {

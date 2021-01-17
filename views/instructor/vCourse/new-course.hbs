@@ -60,6 +60,21 @@
     });
 </script>
 
+<script src="https://cdn.tiny.cloud/1/ezd73nxbzc7bu6e86g2l82jbbffke0mwevwrnyvc5q8h89j6/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
+
+<script>
+    tinymce.init({
+        selector: '#FullDes',
+        height: 600,
+        plugins: 'paste image link autolink lists table media',
+        menubar: false,
+        toolbar: [
+            'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link image media',
+        ],
+    });
+</script>
+
 <script>
     $('#formRegister').on('submit', function (e) {
         e.preventDefault();
@@ -110,7 +125,7 @@
 
 
                 <div class="sdb_holder ">
-                    <button class="btn btn-outline-primary" type="submit" formaction="/account/changeavatar">
+                    <button class="btn btn-outline-primary" type="submit" formaction="/my-course/changeimage">
                         Change Image
                     </button>
                 </div>
@@ -149,8 +164,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="txtUserID">User id</label>
-                        <input type="text" class="form-control" id="txtUserID" value="{{user.ID_USER}}" name="ID_USER"
+                        <input type="hidden" class="form-control" id="txtUserID" value="{{user.ID_USER}}" name="ID_USER"
                             readonly required>
                     </div>
 
@@ -159,8 +173,8 @@
                             <label class="input-group-text" na for="isDone">Is This course Finish?</label>
                         </div>
                         <select class="custom-select" name="DONE" id="isDone">
-                            <option value="1">Yes</option>
                             <option value="0">No</option>
+                            <option value="1">Yes</option>
                         </select>
                     </div>
 
@@ -175,7 +189,7 @@
                     </div>
                     <div class="form-group">
                         <label for="txtDOB">Create date</label>
-                        <input type="text" class="form-control" value="{{today}}" disabled id="txtDOB" name="CREATEDATE"
+                        <input type="text" class="form-control" value="{{today}}" readonly id="txtDOB" name="CREATEDATE"
                             required>
                     </div>
                     <div class="form-group">
@@ -192,14 +206,14 @@
                     </div>
                     <div class="form-group">
                         <label for="FullDes">Full Description</label>
-                        <textarea type="text" class="form-control" name="DISCRIPTION" id="FullDes" cols="30"
+                        <textarea type="text" class="form-control" name="DESCRIPTION" id="FullDes" cols="30"
                             rows="20"></textarea>
                     </div>
 
 
                 </div>
                 <div class="card-footer text-muted">
-                    <button type="submit" class="btn btn-outline-success" formaction="/account/profile">
+                    <button type="submit" class="btn btn-outline-success" formaction="/my-course/add">
                         <i class="fa fa-check" aria-hidden="true"></i>
                         Update Profile
                     </button>
