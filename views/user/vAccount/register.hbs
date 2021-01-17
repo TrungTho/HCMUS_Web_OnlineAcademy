@@ -17,15 +17,16 @@
         }
 
         const username = $('#txtUsername').val();
+        const email = $('#txtEmail').val();
 
-        $.getJSON(`/account/is-available?user=${username}`, function (data) {
+        $.getJSON(`/account/is-available?user=${username}&email=${email}`, function (data) {
             if (data === true) {
                 //off event on in first line
                 //alert("real submit");
                 $('#formRegister').off('submit').submit();
             }
             else {
-                alert("existed username");
+                alert("existed username or mail");
             }
         })
     });

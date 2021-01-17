@@ -64,10 +64,20 @@ router.post("/logout", async function (req, res) {
 });
 
 router.get("/is-available", async function (req, res) {
+  //get data from req
   const username = req.query.user;
-  const datum = await userModel.getSingleByUsername(username);
-  if (datum === null) return res.json(true);
-  //console.log(datum);
+  const email = req.query.email;
+
+  console.log(username + "--" + email);
+
+  const datumUser = await userModel.getSingleByUsername(username);
+  const datumEmail = await userModel.getSingleByEmail(email);
+
+  if (datumUser === null) {
+    if (datumEmail === null) {
+      return res.json(true);
+    }
+  }
   return res.json(false);
 });
 

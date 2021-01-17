@@ -40,4 +40,12 @@ module.exports = {
     if (rows.length === 0) return null;
     return rows[0];
   },
+
+  async getSingleByEmail(email) {
+    const rows = await db.load(
+      `select * from ${TABLE_NAME} where EMAIL = "${email}" `
+    );
+    if (rows.length === 0) return null;
+    return rows[0];
+  },
 };
