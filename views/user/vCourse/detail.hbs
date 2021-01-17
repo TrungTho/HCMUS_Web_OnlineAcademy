@@ -84,24 +84,30 @@
                 </div>
 
             </div>
-            <div class="bg-danger">
-                <div class="img-wrapper"><img src="/resources/images/accounts/{{../instructor.ID_USER}}.png"
-                        alt="{{../instructor.FULLNAME}}" title="{{../instructor.FULLNAME}}"></div>
-                <p class="card-text">Instructor: {{../instructor.FULLNAME}}</p>
-                <p class="card-text">Bio: {{../instructor.PROFILE}}</p>
-
-            </div>
             {{{DESCRIPTION}}}
         </div>
+
+        <div class="instructor">
+            <div><img src="/resources/images/accounts/{{../instructor.ID_USER}}.png" alt="{{../instructor.FULLNAME}}"
+                    title="{{../instructor.FULLNAME}}"></div>
+            <div style="margin-left: 20px;">
+                <p class="card-text">Instructor: {{../instructor.FULLNAME}}</p>
+                <p class="card-text">Bio: {{../instructor.PROFILE}}</p>
+            </div>
+
+        </div>
+
         <div style="margin-top: 24px;">
             <h2>Reviews</h2>
             {{#each ../feedbackdata}}
             <div class="comment">
                 <img src="/resources/images/accounts/{{user.ID_USER}}.png" alt="{{user.FULLNAME}}">
-                <h4>{{user.FULLNAME}}</h4>
-                <div><strong>Rating: {{feedback.RATE}}/5</strong> <i class="fa fa-star" aria-hidden="true"></i></div>
-
-                <div>{{feedback.FEEDBACK}}</div>
+                <div style="margin-left: 20px;">
+                    <h4>{{user.FULLNAME}}</h4>
+                    <div><strong>Rating: {{feedback.RATE}}/5</strong> <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div>{{feedback.FEEDBACK}}</div>
+                </div>
             </div>
             {{/each}}
         </div>
