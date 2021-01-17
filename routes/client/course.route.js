@@ -2,6 +2,7 @@ const express = require("express");
 const categoryModel = require("../../models/category.model");
 const router = express.Router();
 const courseModel = require("../../models/course.model");
+const lessonModel = require("../../models/lesson.model");
 const orderDetailModel = require("../../models/order-detail.model");
 const userCourseModel = require("../../models/user-course.model");
 const userModel = require("../../models/user.model");
@@ -129,7 +130,12 @@ router.post("/feedback", async function (req, res) {
 });
 
 router.get("/lesson/:id", async function (req, res) {
-  res.render("user/vCourse/lesson", {});
+  const courseid = req.params.id;
+  const lessons = await lessonModel.allByCourseId(courseid);
+  console.log(courseid + lessons);
+  res.render("user/vCourse/lesson", {
+    lessons,
+  });
 });
 
 module.exports = router;

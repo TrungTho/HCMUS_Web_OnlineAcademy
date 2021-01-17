@@ -1,3 +1,59 @@
-<video width="320" height="240" controls>
-    <source src="/resources/videos/Lesson0.mp4" type="video/mp4">
-</video>
+{{#section 'js'}}
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>
+
+{{/section}}
+
+{{#section 'css'}}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+{{/section}}
+
+<div class="wrapper row3">
+    <main class="hoc container clear">
+
+        <!-- ################################################################################################ -->
+        <video width="1000" height="500" controls>
+            <source src="/resources/videos/Lesson0.mp4" type="video/mp4">
+        </video>
+
+        <table id="table_id" class="display">
+            <thead>
+                <tr>
+                    <th class="block" style="width:auto">ID</th>
+                    <th>LESSON NAME</th>
+                    {{#if isInstructor}}
+                    <th class="block" style="width:auto">Action</th>
+                    {{/if}}
+                </tr>
+            </thead>
+            <tbody>
+                {{#each lessons}}
+                <tr>
+                    <td class="block">1</td>
+                    {{#if REVIEW}}
+
+                    <td><a href="/course/byCat/{{ID_CATE}}">{{LESSONNAME}}</a></td>
+                    {{else}}
+                    <td>{{LESSONNAME}}</td>
+
+                    {{/if}}
+                    {{#if ../isInstructor}}
+                    <td class="block">
+
+                        <a name="" id="" class="btn btn-primary" href="/admin/categories/{{ID_CATE}}" role="button">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+                {{/if}}
+                {{/each}}
+
+            </tbody>
+        </table>
+
+    </main>
+</div>
