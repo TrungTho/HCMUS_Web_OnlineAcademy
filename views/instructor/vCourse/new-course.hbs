@@ -54,7 +54,7 @@
         removeTitle: 'Cancel or reset changes',
         elErrorContainer: '#kv-avatar-errors-2',
         msgErrorClass: 'alert alert-block alert-danger',
-        defaultPreviewContent: '<img src="/resources/images/accounts/{{userdata.ID_USER}}.png" alt="Course Image"><h6 class="text-muted">Click to select</h6>',
+        defaultPreviewContent: '<img src="/resources/images/courses/{{course.ID_COURSE}}/{{course.ID_COURSE}}_main.png" alt="Course Image"><h6 class="text-muted">Click to select</h6>',
         layoutTemplates: { main2: '{preview} ' + ' {remove} {browse}' },
         allowedFileExtensions: ["jpg", "png"]
     });
@@ -125,7 +125,8 @@
 
 
                 <div class="sdb_holder ">
-                    <button class="btn btn-outline-primary" type="submit" formaction="/my-course/changeimage">
+                    <button class="btn btn-outline-primary" type="submit"
+                        formaction="/my-course/change-course-image?courseid={{course.ID_COURSE}}">
                         Change Image
                     </button>
                 </div>

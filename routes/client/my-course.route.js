@@ -5,6 +5,7 @@ const orderDetailModel = require("../../models/order-detail.model");
 const userModel = require("../../models/user.model");
 const categoryModel = require("../../models/category.model");
 const moment = require("moment");
+const multer = require("multer");
 
 router.get("/", async function (req, res) {
   //get id of user
@@ -149,6 +150,51 @@ router.get("/edit/:id", async function (req, res) {
     today: moment().format("DD/MM/YYYY"),
     course,
     isUpdate: true,
+  });
+});
+
+router.post("/change-course-image", async function (req, res) {
+  const courseid = req.query.courseid;
+  // console.log(courseid);
+  //update image resource
+  //create path to store avatar image file
+  let storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./resources/images/courses/" + courseid + "/");
+    },
+    filename: function (req, file, cb) {
+      // let filename = "111.png";
+      let filename = courseid + "_main.png";
+      //console.log(filename);
+      cb(null, filename);
+    },
+  });
+
+  let upload = multer({ storage });
+  upload.single("avatar")(req, res, function (err) {
+    if (err) {
+    } else {
+    }
+  });
+
+  storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./resources/images/courses/" + courseid + "/");
+    },
+    filename: function (req, file, cb) {
+      // let filename = "111.png";
+      let filename = courseid + "_thumbnail.png";
+      //console.log(filename);
+      cb(null, filename);
+    },
+  });
+
+  upload = multer({ storage });
+  upload.single("avatar")(req, res, function (err) {
+    if (err) {
+    } else {
+      res.redirect("/my-course");
+    }
   });
 });
 
