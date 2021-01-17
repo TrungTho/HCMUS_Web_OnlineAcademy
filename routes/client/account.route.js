@@ -5,6 +5,7 @@ const moment = require("moment");
 const userModel = require("../../models/user.model");
 const Auth = require("../../middlewares/auth.mdw");
 const multer = require("multer");
+const nodemailer = require("nodemailer");
 
 router.get("/login", async function (req, res) {
   if (req.headers.referer) {
@@ -101,9 +102,34 @@ router.post("/register", async function (req, res) {
       TYPE: 2,
       PROFILE: req.body.PROFILE,
     };
+    //add user data to db
     await userModel.add(newUser);
-    // console.log(newUser);
-    // console.log("hihi");
+
+    //send email confirm
+    var transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "cloneemail1104@gmail.com",
+        pass: "contact1104",
+      },
+    });
+
+    let otp = Math.random().toString(36).substring(7);
+
+    var mailOptions = {
+      from: "cloneemail1104@gmail.com",
+      to: req.body.EMAIL,
+      subject: "Youdemu confirm account",
+      text: "You just created new account on Youdemu! Your OTP is: " + otp,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    });
     res.render("user/vAccount/register", {
       err_message: "Register Successfull!!!",
     });
