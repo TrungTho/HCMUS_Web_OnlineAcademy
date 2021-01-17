@@ -33,30 +33,40 @@
 	-moz-border-radius: 10px;
 	-ms-border-radius: 10px;
 	-o-border-radius: 10px;
-    padding: 20px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+	padding: 20px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
 }
 
 .comment img {
-    height: 120px;
+	height: 120px;
 }
 
 .instructor {
-    display: flex;
-    justify-content: center;
-    background-color: #dadada;
-    align-items: center;
-    padding: 12px;
-    border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
-    width: 320px;
+	display: flex;
+	justify-content: center;
+	background-color: #dadada;
+	align-items: center;
+	padding: 12px;
+	border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	-ms-border-radius: 8px;
+	-o-border-radius: 8px;
+	width: 320px;
 }
 
 .instructor img {
-    height: 120px;
+	height: 120px;
+}
+
+.feedback-wrapper {
+	background-color: #8ed1dc;
+	padding: 20px;
+	border-radius: 12px;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	-ms-border-radius: 12px;
+	-o-border-radius: 12px;
 }
