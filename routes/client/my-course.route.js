@@ -64,7 +64,7 @@ router.get("/add", async function (req, res) {
 });
 
 router.post("/add", async function (req, res) {
-  console.log(req.body);
+  // console.log(req.body);
   let course = {
     ID_USER: req.session.loggedinUser.ID_USER,
     ID_CATE: +req.body.ID_CATE,
@@ -81,7 +81,7 @@ router.post("/add", async function (req, res) {
     ISDISABLE: 0,
   };
 
-  console.log(course);
+  // console.log(course);
   let categories;
   try {
     await courseModel.add(course);
@@ -97,6 +97,58 @@ router.post("/add", async function (req, res) {
     user: req.session.loggedinUser,
     today: moment().format("DD/MM/YYYY"),
     err_message,
+  });
+});
+
+router.post("/update", async function (req, res) {
+  // console.log(req.body);
+  let course = {
+    ID_COURSE: req.body.ID_COURSE,
+    ID_USER: req.session.loggedinUser.ID_USER,
+    ID_CATE: +req.body.ID_CATE,
+    COURSENAME: req.body.COURSENAME,
+    COURSELENGTH: +req.body.COURSELENGTH,
+    LASTUPDATE: moment(req.body.CREATEDATE, "DD/MM/YYYY").format("YYYY-MM-DD"),
+    PRICE: req.body.PRICE,
+    VIEWED: 0,
+    SHORTDES: req.body.SHORTDES,
+    DESCRIPTION: req.body.DESCRIPTION,
+    DISCOUNT: +req.body.DISCOUNT,
+    DONE: +req.body.DONE,
+    ISDISABLE: 0,
+  };
+
+  console.log(course);
+  let categories;
+  try {
+    await courseModel.update(course);
+    err_message = "Save Successfully!!!";
+    categories = await categoryModel.all();
+  } catch (error) {
+    err_message = "Somethings wrong, please check again!!!";
+    categories = course;
+  }
+
+  res.render("instructor/vCourse/new-course", {
+    categories,
+    user: req.session.loggedinUser,
+    today: moment().format("DD/MM/YYYY"),
+    err_message,
+  });
+});
+
+router.get("/edit/:id", async function (req, res) {
+  const courseid = req.params.id;
+
+  const course = await courseModel.getSingle(courseid);
+  const categories = await categoryModel.all();
+
+  res.render("instructor/vCourse/new-course", {
+    categories,
+    user: req.session.loggedinUser,
+    today: moment().format("DD/MM/YYYY"),
+    course,
+    isUpdate: true,
   });
 });
 

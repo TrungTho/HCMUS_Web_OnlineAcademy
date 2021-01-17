@@ -178,46 +178,64 @@
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" value="{{course.ID_COURSE}}" id="txtidcourse"
+                            name="ID_COURSE">
+                    </div>
 
                     <div class="form-group">
                         <label for="txtName">Course Name</label>
-                        <input type="text" class="form-control" id="txtName" name="COURSENAME" required>
+                        <input type="text" class="form-control" value="{{course.COURSENAME}}" id="txtName"
+                            name="COURSENAME" required>
                     </div>
                     <div class="form-group">
                         <label for="txtlength">Length (Hours)</label>
-                        <input type="number" class="form-control" id="txtlength" name="COURSELENGTH">
+                        <input type="number" class="form-control" value="{{course.COURSELENGTH}}" id="txtlength"
+                            name="COURSELENGTH">
                     </div>
                     <div class="form-group">
-                        <label for="txtDOB">Create date</label>
+                        <label for="txtDOB">Change date</label>
                         <input type="text" class="form-control" value="{{today}}" readonly id="txtDOB" name="CREATEDATE"
                             required>
                     </div>
                     <div class="form-group">
                         <label for="txtPrice">Price</label>
-                        <input type="number" class="form-control" id="txtPrice" name="PRICE">
+                        <input type="number" class="form-control" value="{{course.PRICE}}" id="txtPrice" name="PRICE">
                     </div>
                     <div class="form-group">
                         <label for="txtDiscount">Discount (%)</label>
-                        <input type="number" class="form-control" value="0" id="txtDiscount" name="DISCOUNT">
+                        <input type="number" class="form-control" value="{{course.DISCOUNT}}" id="txtDiscount"
+                            name="DISCOUNT">
                     </div>
                     <div class="form-group">
                         <label for="txtShortDes">Short Discription</label>
-                        <input type="text" class="form-control" id="txtShortDes" name="SHORTDES" required>
+                        <input type="text" class="form-control" id="txtShortDes" value="{{course.SHORTDES}}"
+                            name="SHORTDES" required>
                     </div>
                     <div class="form-group">
                         <label for="FullDes">Full Description</label>
                         <textarea type="text" class="form-control" name="DESCRIPTION" id="FullDes" cols="30"
-                            rows="20"></textarea>
+                            rows="20">{{course.DESCRIPTION}}</textarea>
                     </div>
 
 
                 </div>
+
+                {{#if isUpdate}}
+                <div class="card-footer text-muted">
+                    <button type="submit" class="btn btn-outline-success" formaction="/my-course/update">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        Update
+                    </button>
+                </div>
+                {{else}}
                 <div class="card-footer text-muted">
                     <button type="submit" class="btn btn-outline-success" formaction="/my-course/add">
                         <i class="fa fa-check" aria-hidden="true"></i>
-                        Update Profile
+                        Save
                     </button>
                 </div>
+                {{/if}}
             </div>
             <!-- ################################################################################################ -->
         </div>

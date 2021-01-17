@@ -58,6 +58,18 @@
                     </div>
 
                     {{else}}
+
+                    {{#if ../isInstructor}}
+                    <div class="input-group mb-3">
+                        <input type="hidden" value="{{ID_COURSE}}" name="ID_COURSE">
+
+                        <a name="" id="" class="btn btn-outline-primary ml-2" href="/my-course/edit/{{ID_COURSE}}"
+                            role="button">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                            Edit
+                        </a>
+                    </div>
+                    {{else}}
                     <form action="/cart/add" method="POST">
                         <div class="input-group mb-3">
                             <input type="hidden" value="{{ID_COURSE}}" name="ID_COURSE">
@@ -73,6 +85,8 @@
                             </a>
                         </div>
                     </form>
+                    {{/if}}
+
                     {{/if}}
                     {{else}}
                     <a name="" id="" class="btn btn-outline-primary ml-2" href="#" role="button">

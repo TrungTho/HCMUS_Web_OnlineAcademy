@@ -10,6 +10,11 @@ module.exports = {
     return db.add(newObj, TABLE_NAME);
   },
 
+  update(Obj) {
+    const condition = { ID_COURSE: Obj.ID_COURSE };
+    return db.update(Obj, condition, TABLE_NAME);
+  },
+
   allByInstructorId(userid) {
     return db.load(
       `select * from ${TABLE_NAME} where ID_USER = ${userid} and ISDISABLE = 0`
