@@ -18,7 +18,7 @@
         <!-- ################################################################################################ -->
         <div>
             <video width="100%" height="500" controls>
-                <source src="/resources/videos/{{playlesson.ID_COURSE}}/{{playlesson.LESSONNAME}}.mp4" type="video/mp4">
+                <source src="/resources/videos/{{playlesson.ID_COURSE}}/{{playlesson.LESSONNAME}}" type="video/mp4">
             </video>
         </div>
         <div>
@@ -27,9 +27,6 @@
                     <tr>
                         <th class="block" style="width:auto">ID</th>
                         <th>LESSON NAME</th>
-                        {{#if isInstructor}}
-                        <th class="block" style="width:auto">Action</th>
-                        {{/if}}
                     </tr>
                 </thead>
                 <tbody>
@@ -47,19 +44,47 @@
                         {{/if}}
 
                         {{/if}}
-                        {{#if ../isInstructor}}
-                        <td class="block">
 
-                            <a name="" id="" class="btn btn-primary" href="/admin/categories/{{ID_CATE}}" role="button">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                            </a>
-                        </td>
                     </tr>
-                    {{/if}}
                     {{/each}}
 
                 </tbody>
             </table>
         </div>
+        {{#if canEdit}}
+        <form action="" method="POST" enctype="multipart/form-data">
+            <div style="margin-top: 20px;">
+                <div>
+                    <div class="card-header ">
+                        <strong>
+                            Add Lesson
+                        </strong>
+                    </div>
+                    <div class="file-loading">
+                        <input id="lessonvideo" name="lessonvideo" required type="file" class="file"
+                            data-allowed-file-extensions='["mp4"]'>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="hidden" value="{{playlesson.ID_COURSE}}" name="ID_COURSE">
+                    {{!-- <input type="text" class="form-control" placeholder="Lesson's Name" aria-label="New Lesson"
+                        name="LESSONNAME" id="LESSONNAME" aria-describedby="basic-addon2"> --}}
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Preview</label>
+                    </div>
+                    <select class="custom-select" name="REVIEW" id="inputGroupSelect01">
+                        <option value="0" selected>Yes</option>
+                        <option value="1">No</option>
+                    </select>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="submit"
+                            formaction="/course/lesson/add?id={{playlesson.ID_COURSE}}">
+                            Add Lesson
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        {{/if}}
     </main>
 </div>

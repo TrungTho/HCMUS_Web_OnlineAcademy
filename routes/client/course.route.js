@@ -6,6 +6,7 @@ const lessonModel = require("../../models/lesson.model");
 const orderDetailModel = require("../../models/order-detail.model");
 const userCourseModel = require("../../models/user-course.model");
 const userModel = require("../../models/user.model");
+const multer = require("multer");
 
 router.get("/byCat/:id", async function (req, res) {
   const catID = req.params.id;
@@ -129,6 +130,44 @@ router.post("/feedback", async function (req, res) {
   res.redirect(req.headers.referer);
 });
 
+router.post("/lesson/add", async function (req, res) {
+  //add video to resourse
+  const courseid = req.query.id;
+  console.log(courseid);
+  let filename;
+
+  const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./resources/videos/" + courseid + "/");
+    },
+    filename: function (req, file, cb) {
+      filename = file.originalname;
+      console.log(filename);
+      cb(null, filename);
+    },
+  });
+
+  const upload = multer({ storage });
+  upload.single("lessonvideo")(req, res, async function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      const lesson = {
+        ID_COURSE: req.body.ID_COURSE,
+        LESSONNAME: filename,
+        REVIEW: req.body.REVIEW,
+      };
+
+      console.log(lesson);
+
+      //add data to db
+      await lessonModel.add(lesson);
+    }
+  });
+
+  res.redirect(req.headers.referer);
+});
+
 router.get("/lesson/:id", async function (req, res) {
   const courseid = req.params.id;
   const lessonid = req.query.lessonid;
@@ -163,12 +202,28 @@ router.get("/lesson/:id", async function (req, res) {
     }
   }
 
-  console.log("hehe" + isBought);
+  //check that user is instructor that created that course?
+  let canEdit = false;
+  if (req.session.isLogin) {
+    const course = await courseModel.getSingle(courseid);
+    // console.log(course);
+
+    //console.log(course.ID_USER + "==" + req.session.loggedinUser.ID_USER);
+    if (
+      parseInt(course.ID_USER) === parseInt(req.session.loggedinUser.ID_USER)
+    ) {
+      canEdit = true;
+      isBought = true;
+    }
+  }
+
+  //console.log(canEdit);
 
   res.render("user/vCourse/lesson", {
     lessons,
     playlesson,
     isBought,
+    canEdit,
   });
 });
 

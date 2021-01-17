@@ -21,7 +21,10 @@
   .dropbtn {
     background-color: #1D8B94;
     color: white;
-    padding: 16px;
+    padding-right: 16px;
+    padding-left: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     font-size: 16px;
     border: none;
     cursor: pointer;
@@ -71,7 +74,10 @@
 
   <h2>{{CatName}}</h2>
   <div class="dropdown">
-    <button class="dropbtn">Filter</button>
+    <button class="dropbtn">
+      <i class="fa fa-filter" aria-hidden="true"></i>
+      Filter
+    </button>
     <div class="dropdown-content">
       <a href="/search?ascend=1&searchstring={{CatName}}">
         <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
