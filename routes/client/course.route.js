@@ -22,11 +22,13 @@ router.get("/byCat/:id", async function (req, res) {
   // console.log("----------------");
   const items = [];
   for (let course of rows) {
+    //get instructor name
     let instructor = await userModel.getSingle(course.ID_USER);
 
+    //get price after discount
     let realPrice = 0;
     let isDiscount = true;
-    if (course.DISCOUNT === 0) {
+    if (isNaN(parseInt(course.DISCOUNT)) || parseInt(course.DISCOUNT) === 0) {
       realPrice = course.PRICE;
       isDiscount = false;
     } else {
@@ -35,11 +37,17 @@ router.get("/byCat/:id", async function (req, res) {
       realPrice = price - (price * sale) / 100;
     }
 
+    //get state finished or not
+    let isFinished = false;
+    if (course.DONE === 1) isFinished = true;
+
+    console.log(course.ID_COURSE + "--" + course.DONE + "--" + isFinished);
     items.push({
       course,
       instructor,
       realPrice,
       isDiscount,
+      isFinished,
     });
   }
 

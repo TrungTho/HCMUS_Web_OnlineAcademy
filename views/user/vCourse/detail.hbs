@@ -36,7 +36,6 @@
 
                 <div style="margin-right: 20px;">
                     <p class="card-text" id="txt">Lastest update: {{LASTUPDATE}}</p>
-                    <p class="card-text">Instructor: {{../instructor.FULLNAME}}</p>
 
                     <div data-rate="3" id="rateYo"></div>
 
@@ -85,15 +84,22 @@
                 </div>
 
             </div>
+            <div class="bg-danger">
+                <div class="img-wrapper"><img src="/resources/images/accounts/{{../instructor.ID_USER}}.png"
+                        alt="{{../instructor.FULLNAME}}" title="{{../instructor.FULLNAME}}"></div>
+                <p class="card-text">Instructor: {{../instructor.FULLNAME}}</p>
+                <p class="card-text">Bio: {{../instructor.PROFILE}}</p>
 
+            </div>
             {{{DESCRIPTION}}}
         </div>
         <div style="margin-top: 24px;">
             <h2>Reviews</h2>
             {{#each ../feedbackdata}}
             <div class="comment">
+                <img src="/resources/images/accounts/{{user.ID_USER}}.png" alt="{{user.FULLNAME}}">
                 <h4>{{user.FULLNAME}}</h4>
-                <div><strong>Rating: {{feedback.RATE}}/5</strong></div>
+                <div><strong>Rating: {{feedback.RATE}}/5</strong> <i class="fa fa-star" aria-hidden="true"></i></div>
 
                 <div>{{feedback.FEEDBACK}}</div>
             </div>
