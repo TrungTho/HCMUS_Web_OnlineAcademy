@@ -1,0 +1,190 @@
+{{#section 'js'}}
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>
+
+<script>
+    $('#changeState').on('click', function () {
+        const id = $(this).data('id');
+        console.log(id);
+        $('#txtForId').val(id);
+        $('#formIdToDel').submit();
+    })
+</script>
+
+<script>
+    $('.classchangeState').on('click', function () {
+        const id = $(this).data('id');
+        console.log(id);
+        $('#txtForId').val(id);
+        $('#formIdToDel').submit();
+    })
+</script>
+
+<script>
+    $('#ichangeState').on('click', function () {
+        const id = $(this).data('id');
+        console.log(id);
+        $('#txtForId').val(id);
+        $('#formIdToDel').submit();
+    })
+</script>
+
+{{/section}}
+
+{{#section 'css'}}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+{{/section}}
+
+<form action="/admin/user/change-state" id="formIdToDel" method="post">
+    <input type="hidden" name="id" id="txtForId">
+</form>
+
+<div class="wrapper row3">
+    <main class="hoc container clear">
+        <!-- main body -->
+        <!-- ################################################################################################ -->
+        <div class="sidebar one_quarter first">
+            <!-- ################################################################################################ -->
+            <h6>Management</h6>
+            <nav class="sdb_holder">
+                <ul>
+                    <li><a href="#">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            User
+                        </a>
+                        <ul>
+                            <li><a href="#">Students</a></li>
+                            <li><a href="#">Instructors</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">
+                            <i class="fa fa-list" aria-hidden="true"></i>
+                            Course Categories
+                        </a>
+                        <ul>
+                            <li><a href="#">Navigation - Level 2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">
+                            <i class="fa fa-bookmark" aria-hidden="true"></i>
+                            Courses
+                        </a>
+                        <ul>
+                            <li><a href="#">Navigation - Level 2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">
+                            <i class="fa fa-bookmark" aria-hidden="true"></i>
+                            Courses
+                        </a>
+                        <ul>
+                            <li><a href="#">Navigation - Level 2</a></li>
+                            <li><a href="#">Navigation - Level 2</a>
+                                <ul>
+                                    <li><a href="#">Navigation - Level 3</a></li>
+                                    <li><a href="#">Navigation - Level 3</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sdb_holder">
+                <h6>Lorem ipsum dolor</h6>
+                <address>
+                    Full Name<br>
+                    Address Line 1<br>
+                    Address Line 2<br>
+                    Town/City<br>
+                    Postcode/Zip<br>
+                    <br>
+                    Tel: xxxx xxxx xxxxxx<br>
+                    Email: <a href="#">contact@domain.com</a>
+                </address>
+            </div>
+            <div class="sdb_holder">
+                <article>
+                    <h6>Lorem ipsum dolor</h6>
+                    <p>Nuncsed sed conseque a at quismodo tris mauristibus sed habiturpiscinia sed.</p>
+                    <ul>
+                        <li><a href="#">Lorem ipsum dolor sit</a></li>
+                        <li>Etiam vel sapien et</li>
+                        <li><a href="#">Etiam vel sapien et</a></li>
+                    </ul>
+                    <p>Nuncsed sed conseque a at quismodo tris mauristibus sed habiturpiscinia sed.
+                        Condimentumsantincidunt dui mattis magna intesque purus orci augue lor nibh.</p>
+                    <p class="more"><a href="#">Continue Reading &raquo;</a></p>
+                </article>
+            </div>
+            <!-- ################################################################################################ -->
+        </div>
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+        <div class="content three_quarter">
+            <!-- ################################################################################################ -->
+            <h1>User Management</h1>
+            {{!-- <form action="" method="POST">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="New Category's Name" aria-label="New Category"
+                        name="CATENAME" id="CATENAME" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="submit" formaction="/admin/categories/add">
+                            Add Category
+                        </button>
+                    </div>
+                </div>
+            </form> --}}
+
+            <table id="table_id" class="display">
+                <thead>
+                    <tr>
+                        <th class="block" style="width:auto">ID_USER</th>
+                        <th>USERNAME</th>
+                        <th>EMAIL</th>
+                        <th>FULLNAME</th>
+                        <th>DOB</th>
+                        <th>BIO</th>
+                        <th style="width:auto">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each categories}}
+                    <tr>
+                        <td>{{ID_USER}}</td>
+                        <td>{{USERNAME}}</td>
+                        <td>{{EMAIL}}</td>
+                        <td>{{FULLNAME}}</td>
+                        <td>{{DOB}}</td>
+                        <td>{{PROFILE}}</td>
+                        <td>
+                            {{#if ISDISABLE}}
+
+                            <a data-id="{{ID_USER}}" name="changeState" id="changeState"
+                                class="btn btn-primary classchangeState" href="javascript:;" role="button">
+                                <i class="fa fa-superpowers" aria-hidden="true"></i>
+                            </a>
+                            {{else}}
+                            <a data-id="{{ID_USER}}" name="ichangeState" id="ichangeState"
+                                class="btn btn-primary classchangeState" href="javascript:;" role="button">
+                                <i class="fa fa-stop" aria-hidden="true"></i>
+                            </a>
+
+                            {{/if}}
+
+                        </td>
+                    </tr>
+                    {{/each}}
+
+                </tbody>
+            </table>
+            <!-- ################################################################################################ -->
+        </div>
+        <!-- ################################################################################################ -->
+        <!-- / main body -->
+        <div class="clear"></div>
+    </main>
+</div>

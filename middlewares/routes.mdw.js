@@ -13,7 +13,7 @@ module.exports = function (app) {
     isAdmin,
     require("../routes/admin/category.route")
   );
-  //app.use("/admin/products", require("../routes/admin/product.route"));
+  app.use("/admin/user", isAdmin, require("../routes/admin/user.route"));
   app.use("/course", require("../routes/client/course.route"));
   app.use("/search", require("../routes/client/search.route"));
   app.use("/account", require("../routes/client/account.route"));

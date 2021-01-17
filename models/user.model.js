@@ -11,6 +11,12 @@ module.exports = {
     return db.load(`select * from ${TABLE_NAME} where Type = ${type}`);
   },
 
+  disableUser(id) {
+    return db.load(
+      `update ${TABLE_NAME} set isdisable=not(isdisable) where id_user=${id}`
+    );
+  },
+
   add(newObj) {
     return db.add(newObj, TABLE_NAME);
   },
