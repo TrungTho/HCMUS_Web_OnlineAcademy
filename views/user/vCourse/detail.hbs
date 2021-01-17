@@ -125,22 +125,23 @@
             {{/each}}
         </div>
 
-        <div class="bg-danger">
+        <div class="feedback-wrapper">
             <h2>Write Your Feedback</h2>
             <form action="/course/feedback" method="post">
-                <div>
+                <input type="text" value="Course ID: {{ID_COURSE}}" name="ID_COURSE" disabled>
+                <div style="margin: 20px 0;">
+                    <span>Your rating: </span>
                     <input type="range" name="RATE" id="inputrating" aria-valuemax="5" aria-valuemin="1"
                         aria-valuenow="5" value="5" aria-valuetext="rate">
                 </div>
-                <input type="text" value="{{ID_COURSE}}" name="ID_COURSE">
                 <div class="block clear">
                     <label for="FEEDBACKK">How do you think?</label>
-                    <textarea name="FEEDBAKK" id="FEEDBAKK" style="width: 100%;" rows="10"></textarea>
+                    <textarea name="FEEDBAKK" id="FEEDBAKK" style="width: 100%;" rows="5"></textarea>
                 </div>
                 <div>
                     <input type="submit" name="submit" value="Submit Feedback">
                     &nbsp;
-                    <input type="reset" name="reset" value="Reset Form">
+                    <input type="reset" name="reset" value="Clear">
                 </div>
             </form>
         </div>
