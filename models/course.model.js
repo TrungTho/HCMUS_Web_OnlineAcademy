@@ -6,15 +6,34 @@ module.exports = {
     return db.load(`select * from ${TABLE_NAME} where ISDISABLE = 0`);
   },
 
-  allWithAscendingOrder(orderField) {
+  allWithAscendingCourseName(querystring) {
     return db.load(
-      `select * from ${TABLE_NAME}  where ISDISABLE = 0 order by ${orderField}`
+      `select * from ${TABLE_NAME} where match (coursename, shortdes, description) against ('${querystring}') order by coursename`
     );
   },
 
-  allWithDescendingOrder(orderField) {
+  allWithDescendingCourseName(querystring) {
     return db.load(
-      `select * from ${TABLE_NAME}  where ISDISABLE = 0 order by ${orderField} desc`
+      `select * from ${TABLE_NAME} where match (coursename, shortdes, description) against ('${querystring}') order by coursename desc`
+    );
+  },
+
+  allWithAscendingPrice(querystring) {
+    return db.load(
+      `select * from ${TABLE_NAME} where match (coursename, shortdes, description) against ('${querystring}') order by price desc`
+    );
+  },
+
+  allWithDescendingPrice(querystring) {
+    return db.load(
+      `select * from ${TABLE_NAME} where match (coursename, shortdes, description) against ('${querystring}') order by price`
+    );
+  },
+
+  //fulltext search with query
+  fulltextSearch(querystring) {
+    return db.load(
+      `select * from ${TABLE_NAME} where match (coursename, shortdes, description) against ('${querystring}')`
     );
   },
 

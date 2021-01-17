@@ -15,6 +15,7 @@ module.exports = function (app) {
   );
   //app.use("/admin/products", require("../routes/admin/product.route"));
   app.use("/course", require("../routes/client/course.route"));
+  app.use("/search", require("../routes/client/search.route"));
   app.use("/account", require("../routes/client/account.route"));
   app.use("/my-course", isAuth, require("../routes/client/my-course.route"));
   app.use("/wishlist", isAuth, require("../routes/client/wishlist.route"));

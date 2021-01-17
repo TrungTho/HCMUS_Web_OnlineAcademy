@@ -41,7 +41,7 @@ router.get("/byCat/:id", async function (req, res) {
     let isFinished = false;
     if (course.DONE === 1) isFinished = true;
 
-    console.log(course.ID_COURSE + "--" + course.DONE + "--" + isFinished);
+    // console.log(course.ID_COURSE + "--" + course.DONE + "--" + isFinished);
     items.push({
       course,
       instructor,

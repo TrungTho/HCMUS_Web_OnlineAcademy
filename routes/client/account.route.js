@@ -40,10 +40,10 @@ router.post("/login", async function (req, res) {
         req.session.isInstructor = false;
       }
 
-      console.log(parseInt(datum.TYPE));
-      console.log(req.session.isAdmin);
-      console.log(req.session.isStudent);
-      console.log(req.session.isInstructor);
+      // console.log(parseInt(datum.TYPE));
+      // console.log(req.session.isAdmin);
+      // console.log(req.session.isStudent);
+      // console.log(req.session.isInstructor);
 
       let url = req.session.retUrl || "/";
       res.redirect(url);
@@ -69,7 +69,7 @@ router.get("/is-available", async function (req, res) {
   const username = req.query.user;
   const email = req.query.email;
 
-  console.log(username + "--" + email);
+  // console.log(username + "--" + email);
 
   const datumUser = await userModel.getSingleByUsername(username);
   const datumEmail = await userModel.getSingleByEmail(email);
