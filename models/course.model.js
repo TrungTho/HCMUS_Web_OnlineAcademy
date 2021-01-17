@@ -6,6 +6,12 @@ module.exports = {
     return db.load(`select * from ${TABLE_NAME} where ISDISABLE = 0`);
   },
 
+  allByInstructorId(userid) {
+    return db.load(
+      `select * from ${TABLE_NAME} where ID_USER = ${userid} and ISDISABLE = 0`
+    );
+  },
+
   allWithAscendingCourseName(querystring) {
     return db.load(
       `select * from ${TABLE_NAME} where match (coursename, shortdes, description) against ('${querystring}') order by coursename`

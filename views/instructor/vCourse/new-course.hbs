@@ -54,7 +54,7 @@
         removeTitle: 'Cancel or reset changes',
         elErrorContainer: '#kv-avatar-errors-2',
         msgErrorClass: 'alert alert-block alert-danger',
-        defaultPreviewContent: '<img src="/resources/images/accounts/{{userdata.ID_USER}}.png" alt="Your Avatar"><h6 class="text-muted">Click to select</h6>',
+        defaultPreviewContent: '<img src="/resources/images/accounts/{{userdata.ID_USER}}.png" alt="Course Image"><h6 class="text-muted">Click to select</h6>',
         layoutTemplates: { main2: '{preview} ' + ' {remove} {browse}' },
         allowedFileExtensions: ["jpg", "png"]
     });
@@ -97,11 +97,7 @@
     <!-- ################################################################################################ -->
     <div class="sidebar one_quarter first align-content-center">
         <!-- ################################################################################################ -->
-        <h2>{{#if isStudent}}
-            Student
-            {{/if}} {{#if isInstructor}}
-            Instructor
-            {{/if}} Profile
+        <h2>New course
         </h2>
         <form action="" method="post" id="fromChangeAva" enctype="multipart/form-data">
 
@@ -115,7 +111,7 @@
 
                 <div class="sdb_holder ">
                     <button class="btn btn-outline-primary" type="submit" formaction="/account/changeavatar">
-                        Change Avatar
+                        Change Image
                     </button>
                 </div>
             </div>
@@ -140,48 +136,66 @@
                         {{err_message}}
                     </div>
                     {{/if}}
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Category</label>
+                        </div>
+                        <select class="custom-select" name="ID_CATE" id="inputGroupSelect01">
+                            {{#each categories}}
+                            <option value="{{ID_CATE}}">{{CATENAME}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+
                     <div class="form-group">
-                        <input type="hidden" class="form-control" value="{{userdata.ID_USER}}" id="txtIDUSER"
-                            name="ID_USER" readonly>
+                        <label for="txtUserID">User id</label>
+                        <input type="text" class="form-control" id="txtUserID" value="{{user.ID_USER}}" name="ID_USER"
+                            readonly required>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" na for="isDone">Is This course Finish?</label>
+                        </div>
+                        <select class="custom-select" name="DONE" id="isDone">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="txtName">Course Name</label>
+                        <input type="text" class="form-control" id="txtName" name="COURSENAME" required>
                     </div>
                     <div class="form-group">
-                        <label for="txtUsername">Username</label>
-                        <input type="text" class="form-control" value="{{userdata.USERNAME}}" id="txtUsername"
-                            name="USERNAME" readonly>
+                        <label for="txtlength">Length (Hours)</label>
+                        <input type="number" class="form-control" id="txtlength" name="COURSELENGTH">
                     </div>
                     <div class="form-group">
-                        <label for="txtOldPassword">Current Password</label>
-                        <input type="password" class="form-control" id="txtOldPassword" autofocus name="OldPassword"
+                        <label for="txtDOB">Create date</label>
+                        <input type="text" class="form-control" value="{{today}}" disabled id="txtDOB" name="CREATEDATE"
                             required>
                     </div>
                     <div class="form-group">
-                        <label for="txtPassword">Password</label>
-                        <input type="password" class="form-control" id="txtPassword" name="PASSWORD" required>
+                        <label for="txtPrice">Price</label>
+                        <input type="number" class="form-control" id="txtPrice" name="PRICE">
                     </div>
                     <div class="form-group">
-                        <label for="txtConfirm">Confirm</label>
-                        <input type="password" class="form-control" id="txtConfirm">
+                        <label for="txtDiscount">Discount (%)</label>
+                        <input type="number" class="form-control" value="0" id="txtDiscount" name="DISCOUNT">
                     </div>
                     <div class="form-group">
-                        <label for="txtName">Name</label>
-                        <input type="text" class="form-control" value="{{userdata.FULLNAME}}" id="txtName"
-                            name="FULLNAME" required>
+                        <label for="txtShortDes">Short Discription</label>
+                        <input type="text" class="form-control" id="txtShortDes" name="SHORTDES" required>
                     </div>
                     <div class="form-group">
-                        <label for="txtEmail">Email</label>
-                        <input type="email" class="form-control" value="{{userdata.EMAIL}}" id="txtEmail" name="EMAIL"
-                            required>
+                        <label for="FullDes">Full Description</label>
+                        <textarea type="text" class="form-control" name="DISCRIPTION" id="FullDes" cols="30"
+                            rows="20"></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="txtDOB">DOB</label>
-                        <input type="text" class="form-control" value="{{userdata.DOB}}" id="txtDOB" name="DOB"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtBio">Bio</label>
-                        <input type="text" class="form-control" id="txtBio" value="{{userdata.PROFILE}}" name="PROFILE"
-                            required>
-                    </div>
+
 
                 </div>
                 <div class="card-footer text-muted">

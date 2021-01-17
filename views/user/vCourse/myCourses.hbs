@@ -15,6 +15,16 @@
   </form>
 
   <h2>{{CatName}}</h2>
+
+  {{#if isInstructor}}
+  <div class="card-header">
+    <a href="#" class="btn btn-outline-danger">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+      New course
+    </a>
+  </div>
+  {{/if}}
+
   <div class="card-body">
     {{#if this.isEmpty}}
     <h4 class="card-title">Sorry</h4>

@@ -3,6 +3,8 @@ const router = express.Router();
 const courseModel = require("../../models/course.model");
 const orderDetailModel = require("../../models/order-detail.model");
 const userModel = require("../../models/user.model");
+const categoryModel = require("../../models/category.model");
+const moment = require("moment");
 
 router.get("/", async function (req, res) {
   //get id of user
@@ -15,7 +17,10 @@ router.get("/", async function (req, res) {
   if (req.session.isStudent) {
     //get all courses of logged student
     myCourses = await orderDetailModel.allByUserId(userid);
-  } else if (isInstructor) {
+  } else if (req.session.isInstructor) {
+    myCourses = await courseModel.allByInstructorId(
+      req.session.loggedinUser.ID_USER
+    );
   }
 
   for (item of myCourses) {
@@ -45,6 +50,16 @@ router.get("/", async function (req, res) {
     CatName: "My courses",
     items,
     isEmpty: items.length === 0,
+  });
+});
+
+router.get("/add", async function (req, res) {
+  const categories = await categoryModel.all();
+  console.log(moment().format("DD/MM/YYYY"));
+  res.render("instructor/vCourse/new-course", {
+    categories,
+    user: req.session.loggedinUser,
+    today: moment().format("DD/MM/YYYY"),
   });
 });
 

@@ -40,10 +40,10 @@ router.post("/login", async function (req, res) {
         req.session.isInstructor = false;
       }
 
-      // console.log(parseInt(datum.TYPE));
-      // console.log(req.session.isAdmin);
-      // console.log(req.session.isStudent);
-      // console.log(req.session.isInstructor);
+      console.log(parseInt(datum.TYPE));
+      console.log(req.session.isAdmin);
+      console.log(req.session.isStudent);
+      console.log(req.session.isInstructor);
 
       let url = req.session.retUrl || "/";
       res.redirect(url);
@@ -143,7 +143,7 @@ router.post("/register", async function (req, res) {
 
 router.get("/profile", Auth, async function (req, res) {
   const userdata = req.session.loggedinUser;
-  userdata.DOB = moment(userdata.DOB, "YYYY/MM/DD").format("DD/MM/YYYY");
+  userdata.DOB = moment(userdata.DOB, "YYYY-MM-DD").format("DD/MM/YYYY");
 
   //console.log(userdata);
   res.render("user/vAccount/profile", {
