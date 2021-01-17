@@ -68,6 +68,13 @@
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                             Edit
                         </a>
+
+                        <a name="" id="" class="btn btn-outline-primary ml-2" href="/my-course/edit/{{ID_COURSE}}"
+                            role="button">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                            Edit
+                        </a>
+
                     </div>
                     {{else}}
                     <form action="/cart/add" method="POST">
@@ -79,7 +86,8 @@
                                     Add to cart
                                 </button>
                             </div>
-                            <a name="" id="" class="btn btn-outline-primary ml-2" href="#" role="button">
+                            <a name="" id="" class="btn btn-outline-primary ml-2" href="/course/lesson/{{ID_COURSE}}"
+                                role="button">
                                 <i class="fa fa-play" aria-hidden="true"></i>
                                 Preview
                             </a>
@@ -89,7 +97,8 @@
 
                     {{/if}}
                     {{else}}
-                    <a name="" id="" class="btn btn-outline-primary ml-2" href="#" role="button">
+                    <a name="" id="" class="btn btn-outline-primary ml-2" href="/course/lesson/{{ID_COURSE}}"
+                        role="button">
                         <i class="fa fa-play" aria-hidden="true"></i>
                         Preview
                     </a>
