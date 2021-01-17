@@ -10,34 +10,31 @@
 	height: 250px;
 }
 
-.hr-udemy{
-	border: #2896A9 solid 0.5px;
+.hr-udemy {
+	border: #2896a9 solid 0.5px;
 	width: 100%;
 }
 /*Title my course*/
-.row3 .container .welcome{
-    display: flex;
-    align-items: center;
+.row3 .container .welcome {
+	display: flex;
+	align-items: center;
 	justify-content: space-between;
-
 }
-.row3 .container .welcome a{
+.row3 .container .welcome a {
 	text-decoration: none;
 	font-size: large;
-
 }
 
-.row3 .container .welcome a:hover{
+.row3 .container .welcome a:hover {
 	text-decoration: underline;
-
 }
 /* Card view */
 
-.carousel-container{
+.carousel-container {
 	position: relative;
 }
 
-.udemy-left{
+.udemy-left {
 	position: absolute;
 	transform: translateY(-50%);
 	transform: translateX(100%);
@@ -47,12 +44,11 @@
 	border-radius: 50%;
 	height: 4.8rem !important;
 	width: 4.8rem !important;
-	color: #2896A9;
+	color: #2896a9;
 	left: -30% !important;
-
 }
 
-.udemy-right{
+.udemy-right {
 	position: absolute;
 	transform: translateY(-50%);
 	transform: translateX(100%);
@@ -60,15 +56,13 @@
 	background-color: #ffffff;
 	border: none;
 	border-radius: 50%;
-	height:4.8rem !important;
+	height: 4.8rem !important;
 	width: 4.8rem !important;
-	color: #2896A9;
+	color: #2896a9;
 	right: -590% !important;
-
 }
 
-
-.udemy-control{
+.udemy-control {
 	position: absolute;
 	transform: translateY(-50%);
 	top: 50%;
@@ -77,14 +71,11 @@
 	border-radius: 50%;
 	height: 4.8rem;
 	width: 4.8rem;
-
-
 }
 
-
-.carousel-inner .item .container{
+.carousel-inner .item .container {
 	display: flex;
-	justify-content:space-around;
+	justify-content: space-around;
 }
 
 /* a.carousel-control{
@@ -101,33 +92,30 @@ display: inline-block;
 font-size: 16px;
 margin: 10px -50px;
 } */
-a.carousel-control:hover{
+a.carousel-control:hover {
 	opacity: 1;
 }
 
 /* Css linh vuc pho bien */
-.hot-category a{
+.hot-category a {
 	font-size: 20px;
 	padding: 5px;
 	border: 1px solid #dcdacb;
 	border-radius: 4px;
 	text-decoration: none;
 	transition-duration: 0.3s;
-
 }
 
-.hot-category a:hover{
+.hot-category a:hover {
 	text-decoration: none;
-	color:#474A48;
-	border-color: #474A48;
+	color: #474a48;
+	border-color: #474a48;
 	font-size: 18px;
-
-
 }
 
-.hot-category{
+.hot-category {
 	display: grid;
-	grid-template-columns: repeat(3,auto);
+	grid-template-columns: repeat(3, auto);
 	justify-items: stretch;
 	text-align: center;
 	gap: 25px 25px;
@@ -136,5 +124,10 @@ a.carousel-control:hover{
 .search-box {
 	background-color: #f4f4f4;
 	padding: 15px;
-	box-shadow: .3px 1px 1px 1px #888888;
+	box-shadow: 0.3px 1px 1px 1px #888888;
 }
+
+/* .nav-item {
+	width: 150px;
+	text-align: center
+} */
