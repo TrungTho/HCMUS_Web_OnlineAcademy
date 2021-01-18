@@ -6,6 +6,10 @@ module.exports = {
     return db.load(`select * from ${TABLE_NAME}`);
   },
 
+  mostView() {
+    return db.load(`select * from ${TABLE_NAME} limit 6`);
+  },
+
   add(newObj) {
     return db.add(newObj, TABLE_NAME);
   },

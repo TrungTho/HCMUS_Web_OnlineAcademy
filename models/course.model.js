@@ -5,10 +5,19 @@ module.exports = {
   all() {
     return db.load(`select * from ${TABLE_NAME} where ISDISABLE = 0`);
   },
+  all() {
+    return db.load(`select * from ${TABLE_NAME} where ISDISABLE = 0 limit 4`);
+  },
 
   allViewDes() {
     return db.load(
       `select * from ${TABLE_NAME} where ISDISABLE = 0 order by viewed desc limit 4`
+    );
+  },
+
+  allDateDes() {
+    return db.load(
+      `select * from ${TABLE_NAME} where ISDISABLE = 0 order by LASTUPDATE desc limit 4`
     );
   },
 
