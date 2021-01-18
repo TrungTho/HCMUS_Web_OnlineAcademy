@@ -1,0 +1,109 @@
+{{#section 'js'}}
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>
+
+<script>
+    $('#changeState').on('click', function () {
+        const id = $(this).data('id');
+        console.log(id);
+        $('#txtForId').val(id);
+        $('#formIdToDel').submit();
+    })
+</script>
+
+<script>
+    $('.classchangeState').on('click', function () {
+        const id = $(this).data('id');
+        console.log(id);
+        $('#txtForId').val(id);
+        $('#formIdToDel').submit();
+    })
+</script>
+
+<script>
+    $('#ichangeState').on('click', function () {
+        const id = $(this).data('id');
+        console.log(id);
+        $('#txtForId').val(id);
+        $('#formIdToDel').submit();
+    })
+</script>
+
+{{/section}}
+
+{{#section 'css'}}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+{{/section}}
+
+<form action="/admin/course/change-state" id="formIdToDel" method="post">
+    <input type="hidden" name="id" id="txtForId">
+</form>
+
+<div class="wrapper row3">
+    <main class="hoc container clear">
+        <!-- main body -->
+        <!-- ################################################################################################ -->
+
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+        <h1>Course Management</h1>
+
+        <table id="table_id" class="display">
+            <thead>
+                <tr>
+                    <th>ID_COURSE</th>
+                    <th>CATE</th>
+                    <th>TEACHER</th>
+                    <th>COURSENAME</th>
+                    <th>COURSELENGTH</th>
+                    <th>CREATEDATE</th>
+                    <th>PRICE</th>
+                    <th>VIEWED</th>
+                    <th>DISCOUNT</th>
+                    <th style="width:auto">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each categories}}
+                <tr>
+                    <td>{{course.ID_COURSE}}</td>
+                    <td>{{cate.CATENAME}}</td>
+                    <td>{{teacher.FULLNAME}}</td>
+                    <td>{{course.COURSENAME}}</td>
+                    <td>{{course.COURSELENGTH}}</td>
+                    <td>{{course.CREATEDATE}}</td>
+                    <td>{{course.PRICE}}</td>
+                    <td>{{course.VIEWED}}</td>
+                    <td>{{course.DISCOUNT}}</td>
+                    <td>
+                        {{#if course.ISDISABLE}}
+
+                        <a data-id="{{course.ID_COURSE}}" name="changeState" id="changeState"
+                            class="btn btn-primary classchangeState" href="javascript:;" role="button">
+                            <i class="fa fa-superpowers" aria-hidden="true"></i>
+                        </a>
+                        {{else}}
+                        <a data-id="{{course.ID_COURSE}}" name="ichangeState" id="ichangeState"
+                            class="btn btn-primary classchangeState" href="javascript:;" role="button">
+                            <i class="fa fa-stop" aria-hidden="true"></i>
+                        </a>
+
+                        {{/if}}
+
+                    </td>
+                </tr>
+                {{/each}}
+
+            </tbody>
+        </table>
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+        <!-- / main body -->
+        <div class="clear"></div>
+    </main>
+</div>

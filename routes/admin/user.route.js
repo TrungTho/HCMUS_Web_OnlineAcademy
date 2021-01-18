@@ -8,16 +8,6 @@ const Auth = require("../../middlewares/auth.mdw");
 const multer = require("multer");
 const nodemailer = require("nodemailer");
 
-router.get("/", async function (req, res) {
-  //khong can try catch do ngoai index.js da co server error handling
-  const rows = await categoryModel.all();
-  //  console.log(rows);
-  res.render("admin/category/category", {
-    categories: rows,
-    isEmpty: rows.length === 0,
-  });
-});
-
 router.get("/student", async function (req, res) {
   //get data from db
   const rows = await userModel.allByType(2);
@@ -113,17 +103,17 @@ router.post("/register", async function (req, res) {
   }
 });
 
-router.get("/:id", async function (req, res) {
-  const id = req.params.id;
-  const datum = await categoryModel.getSingle(id);
+// router.get("/:id", async function (req, res) {
+//   const id = req.params.id;
+//   const datum = await categoryModel.getSingle(id);
 
-  if (datum === null) {
-    return res.redirect("/admin/categories");
-  } else {
-    res.render("admin/category/edit", {
-      datum,
-    });
-  }
-});
+//   if (datum === null) {
+//     return res.redirect("/admin/categories");
+//   } else {
+//     res.render("admin/category/edit", {
+//       datum,
+//     });
+//   }
+// });
 
 module.exports = router;

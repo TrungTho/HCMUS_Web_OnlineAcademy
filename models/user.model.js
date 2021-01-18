@@ -41,7 +41,7 @@ module.exports = {
 
   async getSingleByUsername(username) {
     const rows = await db.load(
-      `select * from ${TABLE_NAME} where USERNAME = "${username}" `
+      `select * from ${TABLE_NAME} where USERNAME = "${username}" where isdisable=0`
     );
     if (rows.length === 0) return null;
     return rows[0];

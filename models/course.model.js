@@ -6,6 +6,16 @@ module.exports = {
     return db.load(`select * from ${TABLE_NAME} where ISDISABLE = 0`);
   },
 
+  allViewDes() {
+    return db.load(
+      `select * from ${TABLE_NAME} where ISDISABLE = 0 order by viewed desc`
+    );
+  },
+
+  allWithDisable() {
+    return db.load(`select * from ${TABLE_NAME} `);
+  },
+
   add(newObj) {
     return db.add(newObj, TABLE_NAME);
   },
@@ -13,6 +23,12 @@ module.exports = {
   update(Obj) {
     const condition = { ID_COURSE: Obj.ID_COURSE };
     return db.update(Obj, condition, TABLE_NAME);
+  },
+
+  disableCourse(id) {
+    return db.load(
+      `update ${TABLE_NAME} set isdisable=not(isdisable) where id_course=${id}`
+    );
   },
 
   allByInstructorId(userid) {

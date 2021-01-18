@@ -1,0 +1,128 @@
+{{#section 'css'}}
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+{{/section}}
+
+{{#section 'js'}}
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script>
+
+    $('#formRegister').on('submit', function (e) {
+        e.preventDefault();
+
+        if ($('#txtUsername').val().length === 0) {
+            alert("invalid username");
+            return;
+        }
+
+        const username = $('#txtUsername').val();
+        const email = $('#txtEmail').val();
+
+        $.getJSON(`/account/is-available?user=${username}&email=${email}`, function (data) {
+            if (data === true) {
+                //off event on in first line
+                //alert("real submit");
+                $('#formRegister').off('submit').submit();
+            }
+            else {
+                alert("existed username or mail");
+            }
+        })
+    });
+
+    $('#txtDOB').datetimepicker({
+        format: 'd/m/Y',
+        timepicker: false,
+        mask: true,
+    });
+
+</script>
+{{/section}}
+
+<main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="sidebar one_quarter first">
+        <!-- ################################################################################################ -->
+        <h6>Welcome to Youdemu</h6>
+
+        <div class="sdb_holder">
+            <h6>Your privacy is our top priority</h6>
+            <ul>
+                <p>Please keep in mind that: </p>
+                <li>You shouldn't use the same password as your username</li>
+                <li>Your email, birday and bio is safe with us</li>
+                <li>By clicking submit you are agreeing to our Terms and Conditions</li>
+                <li>For further support: </li>
+                Tel: +84 123 456 7890<br>
+                Email: <a href="mailto:SUPPORT@YOUDEMU.VN">SUPPORT@YOUDEMU.VN</a>
+            </ul>
+        </div>
+        <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="content three_quarter">
+        <!-- ################################################################################################ -->
+        <form action="/admin/user/register" method="POST" id="formRegister">
+            <div class="card">
+                <div class="card-header">
+                    Register
+                </div>
+                <div class="card-body">
+                    {{#if err_message}}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{err_message}}
+                    </div>
+                    {{/if}}
+
+                    <div class="form-group">
+                        <label for="txtUsername">Username</label>
+                        <input type="text" class="form-control" id="txtUsername" name="USERNAME" autofocus required>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtPassword">Password</label>
+                        <input type="password" class="form-control" id="txtPassword" name="PASSWORD" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtConfirm">Confirm</label>
+                        <input type="password" class="form-control" id="txtConfirm" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtName">Name</label>
+                        <input type="text" class="form-control" id="txtName" name="FULLNAME" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtEmail">Email</label>
+                        <input type="email" class="form-control" id="txtEmail" name="EMAIL" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtDOB">Birthday</label>
+                        <input type="text" class="form-control" id="txtDOB" name="DOB" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtBio">Bio</label>
+                        <input type="text" class="form-control" id="txtBio" name="PROFILE" required>
+                    </div>
+
+                </div>
+                <div class="card-footer text-muted">
+                    <button type="submit" class="btn btn-outline-success">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        Register
+                    </button>
+                </div>
+            </div>
+
+
+        </form>
+        <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+</main>

@@ -14,6 +14,7 @@ module.exports = function (app) {
     require("../routes/admin/category.route")
   );
   app.use("/admin/user", isAdmin, require("../routes/admin/user.route"));
+  app.use("/admin/course", isAdmin, require("../routes/admin/course.route"));
   app.use("/course", require("../routes/client/course.route"));
   app.use("/search", require("../routes/client/search.route"));
   app.use("/account", require("../routes/client/account.route"));
