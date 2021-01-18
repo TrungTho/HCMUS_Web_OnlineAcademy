@@ -8,7 +8,7 @@ module.exports = {
 
   allViewDes() {
     return db.load(
-      `select * from ${TABLE_NAME} where ISDISABLE = 0 order by viewed desc`
+      `select * from ${TABLE_NAME} where ISDISABLE = 0 order by viewed desc limit 4`
     );
   },
 

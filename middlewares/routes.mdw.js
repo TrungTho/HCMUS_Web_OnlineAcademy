@@ -4,9 +4,8 @@ const isAdmin = require("./admin.mdw");
 module.exports = function (app) {
   //tao ra tai nguyen web
   //req - request tu client, res - response tu server
-  app.get("/", (req, res) => {
-    res.render("home");
-  });
+
+  app.use("/", require("../routes/client/home.route"));
 
   app.use(
     "/admin/categories",
