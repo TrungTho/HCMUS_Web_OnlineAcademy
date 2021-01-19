@@ -119,7 +119,7 @@ router.post("/update", async function (req, res) {
     ISDISABLE: 0,
   };
 
-  console.log(course);
+  // console.log(course);
   let categories;
   try {
     await courseModel.update(course);

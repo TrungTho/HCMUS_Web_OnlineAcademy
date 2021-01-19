@@ -108,7 +108,6 @@ router.get("/detail/:id", async function (req, res) {
       isBought = true;
     }
   }
-  console.log(isBought);
   res.render("user/vCourse/detail", {
     product: course,
     realPrice,
@@ -133,7 +132,6 @@ router.post("/feedback", async function (req, res) {
 router.post("/lesson/add", async function (req, res) {
   //add video to resourse
   const courseid = req.query.id;
-  console.log(courseid);
   let filename;
 
   const storage = multer.diskStorage({
@@ -142,7 +140,7 @@ router.post("/lesson/add", async function (req, res) {
     },
     filename: function (req, file, cb) {
       filename = file.originalname;
-      console.log(filename);
+      // console.log(filename);
       cb(null, filename);
     },
   });
@@ -157,8 +155,6 @@ router.post("/lesson/add", async function (req, res) {
         LESSONNAME: filename,
         REVIEW: req.body.REVIEW,
       };
-
-      console.log(lesson);
 
       //add data to db
       await lessonModel.add(lesson);
@@ -224,6 +220,7 @@ router.get("/lesson/:id", async function (req, res) {
     playlesson,
     isBought,
     canEdit,
+    courseid,
   });
 });
 

@@ -11,7 +11,7 @@ const nodemailer = require("nodemailer");
 router.get("/student", async function (req, res) {
   //get data from db
   const rows = await userModel.allByType(2);
-  console.log(rows);
+  // console.log(rows);
 
   res.render("admin/user/index", {
     categories: rows,
@@ -31,9 +31,8 @@ router.get("/instructor", async function (req, res) {
 });
 
 router.post("/change-state", async function (req, res) {
-  console.log("object");
   const userid = req.body.id;
-  console.log(userid);
+  // console.log(userid);
   const ret = await userModel.disableUser(userid);
   //console.log(req.body);
   res.redirect(req.headers.referer);
@@ -63,7 +62,7 @@ router.post("/register", async function (req, res) {
 
     //add user data to db
     await userModel.add(newUser);
-    console.log(newUser);
+    // console.log(newUser);
 
     //send email confirm
     let transporter = nodemailer.createTransport({

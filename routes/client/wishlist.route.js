@@ -76,7 +76,7 @@ router.post("/remove", async function (req, res) {
     ID_COURSE: courseid,
   };
 
-  console.log(delItem);
+  // console.log(delItem);
 
   //remove that row on db
   await wishlistModel.del(delItem);

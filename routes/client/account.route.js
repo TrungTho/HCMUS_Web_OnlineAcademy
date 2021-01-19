@@ -40,10 +40,10 @@ router.post("/login", async function (req, res) {
         req.session.isInstructor = false;
       }
 
-      console.log(parseInt(datum.TYPE));
-      console.log(req.session.isAdmin);
-      console.log(req.session.isStudent);
-      console.log(req.session.isInstructor);
+      // console.log(parseInt(datum.TYPE));
+      // console.log(req.session.isAdmin);
+      // console.log(req.session.isStudent);
+      // console.log(req.session.isInstructor);
 
       let url = req.session.retUrl || "/";
       res.redirect(url);
@@ -161,7 +161,7 @@ router.post("/changeavatar", async function (req, res) {
     filename: function (req, file, cb) {
       // let filename = "111.png";
       let filename = req.session.loggedinUser.ID_USER + ".png";
-      console.log(filename);
+      // console.log(filename);
       cb(null, filename);
     },
   });
@@ -186,7 +186,7 @@ router.post("/profile", async function (req, res) {
     const convertedDOB = moment(req.body.DOB, "DD/MM/YYYY").format(
       "YYYY-MM-DD"
     );
-    console.log(convertedDOB);
+    // console.log(convertedDOB);
     const newUser = {
       ID_USER: req.body.ID_USER,
       USERNAME: req.body.USERNAME,

@@ -31,7 +31,7 @@ router.get("/", async function (req, res) {
 
 router.post("/change-state", async function (req, res) {
   const courseid = req.body.id;
-  console.log(courseid);
+  // console.log(courseid);
   const ret = await courseModel.disableCourse(courseid);
   //console.log(req.body);
   res.redirect(req.headers.referer);
